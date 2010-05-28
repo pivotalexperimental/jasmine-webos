@@ -1,0 +1,97 @@
+.row.jasmine_spec {
+  padding-top: 5px;
+  padding-bottom: 0;
+}
+
+.jasmine_spec:hover {
+  background: lightgray;
+}
+
+.spec {
+  padding: 8px 8px 8px 35px;
+  background: 10px 8px no-repeat; /*color:#ddd;*/
+}
+
+.row.last .spec {
+  padding-bottom: 10px;
+}
+
+.row.scene {
+  padding-left: 10px;
+}
+
+.progress_complete {
+  margin-top: -2px;
+  margin-left: 234px;
+  height: 48px;
+  width: 48px;
+}
+
+.row .pending {
+  background-image: url( ../lib/jasmine/images/pending-16.png );
+}
+
+.row .passed {
+  background-image: url( ../lib/jasmine/images/go-16.png );
+}
+
+.row .failed {
+  background-image: url( ../lib/jasmine/images/fail-16.png );
+  color: red;
+}
+
+ul.failureMessages {
+  padding: 0 0 0 8px;
+  margin: 0;
+  font-size: 16px;
+}
+
+.download-pill .download-filename {
+  margin-top: 5px;
+}
+
+
+#mojo-scene-test-scene-scroller #progressPill .download-pill-background {
+  -webkit-border-image: url(../images/pill-passing.png)  0 25 0 25 repeat repeat;
+}
+
+#mojo-scene-test-scene-scroller #progressPill .download-pill-background.fail {
+  -webkit-border-image: url(../images/pill-failing.png)  0 25 0 25 repeat repeat;
+}
+
+.failed-expectation-summary th {
+  text-align: left;
+}
+
+.failed-expectation-summary td {
+  vertical-align: top;
+}
+
+.pretty-printed {
+  border: 1px solid gray;
+  font-size: .9em;
+}
+
+.pretty-printed table {
+  width: 100%;
+  border: 1px solid black;
+  color: #222;
+}
+
+.pretty-printed tr th {
+  background: #fff;
+  text-align: left;
+}
+
+.pretty-printed tr td {
+  border-top: 1px dashed black;
+  margin: 0;
+}
+
+.pretty-printed .object .key.prototype {
+  color: purple;
+}
+
+.pretty-printed .getter {
+  font-style: italic;
+}
