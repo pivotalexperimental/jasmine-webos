@@ -68,7 +68,7 @@ def generate_sources(opts = {})
   app_files = Dir.glob('app/**/*.js')
 
   test_files = []
-  pockets_testing_path = "plugins/pockets-testing"
+  pockets_testing_path = "plugins/jasmine-webos"
 
   if (opts[:test])
     test_load_first = sources_yaml['test']['load_first'] || []

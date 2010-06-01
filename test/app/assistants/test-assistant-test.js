@@ -14,7 +14,7 @@ describe('TestAssistant', function () {
   afterEach(function () {
     Widgets = this.realWidgets;
   });
-  
+
   xit('should increment the pill, add a result to the proper list widget and error-list when a spec with a failed expectation is passed to reportSpecResults', function() {
     var failedResult = pockets.test.Mom.failedResult();
     var failingSpec = new jasmine.Spec({}, {}, 'desc');
@@ -78,7 +78,7 @@ describe('TestAssistant', function () {
   xit('should show failed tests in an error list', function() {
     Widgets = this.realWidgets;
     spyOn(pockets, 'inTestRunner').andReturn(true);
-    var anotherTestAssistant = pockets.test.createSceneAssistant('test', [], '../../plugins/pockets-testing/app/views/');
+    var anotherTestAssistant = pockets.test.createSceneAssistant('test', [], '../../plugins/jasmine-webos/app/views/');
     anotherTestAssistant.underTest = true;
     pockets.test.setupAndActivate(anotherTestAssistant);
 

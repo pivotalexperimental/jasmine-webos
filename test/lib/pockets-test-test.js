@@ -109,7 +109,7 @@ describe('pockets.runTests', function () {
     var stageController = {};
     stageController.pushScene = jasmine.createSpy();
     pockets.runTests(stageController);
-    expect(stageController.pushScene).wasCalledWith({name:'test', sceneTemplate: '../../plugins/pockets-testing/app/views/test/test-scene'});
+    expect(stageController.pushScene).wasCalledWith({name:'test', sceneTemplate: '../../plugins/jasmine-webos/app/views/test/test-scene'});
   });
 });
 

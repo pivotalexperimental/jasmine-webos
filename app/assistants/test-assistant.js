@@ -7,7 +7,7 @@
 * @constructor
 * */
 function TestAssistant() {
-  this.pocketsTemplatePath = '../../plugins/pockets-testing/app/views/';
+  this.pocketsTemplatePath = '../../plugins/jasmine-webos/app/views/';
   this.running_ = false;
 }
 // @ignore
@@ -40,7 +40,7 @@ TestAssistant.prototype.setup = function() {
   var cssTag = document.createElement('link');
   cssTag.rel = 'stylesheet';
   cssTag.type = 'text/css';
-  cssTag.href = 'plugins/pockets-testing/stylesheets/mojo_jasmine.css';
+  cssTag.href = 'plugins/jasmine-webos/stylesheets/mojo_jasmine.css';
 
   head.appendChild(cssTag);
 

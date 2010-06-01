@@ -1,5 +1,5 @@
 load_first:
-  - lib/jasmine/lib/jasmine-0.10.0.js
+  - lib/jasmine/lib/jasmine-0.10.3.js
   - app/lib/pockets.js
   - app/lib/pockets-dom.js
   - app/lib/pockets-ui.js

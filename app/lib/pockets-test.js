@@ -328,7 +328,7 @@ pockets.runTests = function(stageController) {
   stageController.pocketsDocumentPath = 'plugins/pockets/app/views';
   stageController.pushScene({
     name: 'test',
-    sceneTemplate: '../../plugins/pockets-testing/app/views/test/test-scene'
+    sceneTemplate: '../../plugins/jasmine-webos/app/views/test/test-scene'
   });
 };
 
