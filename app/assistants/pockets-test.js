@@ -41,7 +41,9 @@ jasmine.getEnv().addEqualityTester(pockets.test.testFunctionEquality);
 /* Test runner bootstrapping: swap in our own AppAssistant,
  * which will remove itself immediately and run tests if requested
  */
-
+//if (Mojo && !window['AppAssistant']) {
+//  throw "Jasmine webOS error: You must define an AppAssistant for Jasmine specs to run";
+//}
 pockets.originalAppAssistant_ = window['AppAssistant'];
 pockets.originalStageAssistant = window['StageAssistant'];
 pockets.isTestingPockets_ = window['AppAssistant'] && AppAssistant.isPockets;
@@ -55,6 +57,7 @@ AppAssistant = function(appController) {
   var realAppAssistant = new pockets.originalAppAssistant_(appController);
 
   if (runTests) {
+    Mojo.Log.info("====> Jasmine webOS: prepping to run tests");
     spyOn(Mojo, "Depot").andReturn(new pockets.FakeDepot());
 
     window['StageAssistant'] = function() {
@@ -71,6 +74,7 @@ AppAssistant = function(appController) {
         Mojo.Controller.setupStageController(window);
         Mojo.Power.setup(Mojo.Controller.appController.assistant, Mojo.Controller.appInfo.id);
       } else {
+        console.error("=============> About to push test scene: ");
         appController.createStageWithCallback({
           name: 'pockets-test-runner',
           assistantName: 'DefaultStageAssistant',

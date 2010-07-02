@@ -51,11 +51,11 @@ ul.failureMessages {
 }
 
 
-#mojo-scene-test-scene-scroller #progressPill .download-pill-background {
+.test-scene #pill .download-pill-background {
   -webkit-border-image: url(../images/pill-passing.png)  0 25 0 25 repeat repeat;
 }
 
-#mojo-scene-test-scene-scroller #progressPill .download-pill-background.fail {
+.test-scene #pill.fail .download-pill-background {
   -webkit-border-image: url(../images/pill-failing.png)  0 25 0 25 repeat repeat;
 }
 
