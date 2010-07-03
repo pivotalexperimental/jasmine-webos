@@ -16,7 +16,7 @@ TestAssistant.prototype.addJasmineCSS = function() {
   var cssTag = document.createElement('link');
   cssTag.rel = 'stylesheet';
   cssTag.type = 'text/css';
-  cssTag.href = 'plugins/jasmine-webos/stylesheets/mojo_jasmine.css';
+  cssTag.href = 'plugins/jasmine-webos/stylesheets/jasmine-webos.css';
 
   head.appendChild(cssTag);
 

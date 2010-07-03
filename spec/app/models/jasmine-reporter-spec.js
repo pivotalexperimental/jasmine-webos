@@ -32,9 +32,31 @@ describe("JasmineReporter", function () {
       expect(jasmineEnv.addReporter).wasCalledWith(reporter);
     });
 
-    it("should provide a list widget model for failed specs", function() {
-      expect(reporter.getFailedSpecsListModel()).toEqual({listTitle: "Failing Specs", items: []});
+    describe("has a list model for failed specs that", function () {
+      var listModel;
+
+      beforeEach(function() {
+        listModel = reporter.getFailedSpecsListModel();
+      });
+
+      it("should exist", function() {
+        expect(listModel).toBeDefined();
+      });
+
+      it("should have an empty list", function() {
+        expect(listModel.items).toEqual([]);
+      });
+
+      it("should have a list class for CSS", function() {
+        expect(listModel.listClass).toEqual('fail');
+      });
+
+      it("should have a list name", function() {
+        expect(listModel.listTitle).toEqual('Failing Specs');
+      });
     });
+
+
 
     it("should provide a collection of all suites for use as widget models", function() {
       expect(reporter.getSuitesListModel()).toEqual({listTitle: "Passing Specs", items: []});

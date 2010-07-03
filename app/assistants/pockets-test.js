@@ -57,8 +57,8 @@ AppAssistant = function(appController) {
   var realAppAssistant = new pockets.originalAppAssistant_(appController);
 
   if (runTests) {
-    Mojo.Log.info("====> Jasmine webOS: prepping to run tests");
-    spyOn(Mojo, "Depot").andReturn(new pockets.FakeDepot());
+    Mojo.Log.info("====> Jasmine webOS: prepping to run specs");
+    spyOn(Mojo, "Depot").andReturn(new jasmine.webos.FakeDepot());
 
     window['StageAssistant'] = function() {
       window['StageAssistant'] = pockets.originalStageAssistant;
@@ -74,7 +74,7 @@ AppAssistant = function(appController) {
         Mojo.Controller.setupStageController(window);
         Mojo.Power.setup(Mojo.Controller.appController.assistant, Mojo.Controller.appInfo.id);
       } else {
-        console.error("=============> About to push test scene: ");
+        console.error("=============> Jasmine webOS: About to push scene for spec results");
         appController.createStageWithCallback({
           name: 'pockets-test-runner',
           assistantName: 'DefaultStageAssistant',

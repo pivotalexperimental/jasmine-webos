@@ -8,6 +8,7 @@ function JasmineReporter(view, jasmineEnv) {
   var startTime, endTime;
 
   var failedSpecResultsModel = {
+    listClass: 'fail',
     listTitle: 'Failing Specs',
     items: []
   };

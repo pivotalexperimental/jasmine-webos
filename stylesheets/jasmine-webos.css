@@ -60,8 +60,25 @@ ul.failureMessages {
 }
 
 .test-scene .palm-divider .label {
-  color: #8F0902;
+  color: #8f0902;
 }
+
+.test-scene .palm-row .spec-name {
+  font-size: 15px;
+  padding: 10px;
+  color: #333;
+}
+
+.test-scene .palm-row.first .spec-name {
+  padding-top: 0;
+}
+
+.test-scene .palm-list.fail .spec-name {
+  color: #8f0902;
+}
+
+
+
 
 .failed-expectation-summary th {
   text-align: left;
