@@ -33,11 +33,11 @@ describe("JasmineReporter", function () {
     });
 
     it("should provide a list widget model for failed specs", function() {
-      expect(reporter.getFailedSpecsListModel()).toEqual({items: []});
+      expect(reporter.getFailedSpecsListModel()).toEqual({listTitle: "Failing Specs", items: []});
     });
 
     it("should provide a collection of all suites for use as widget models", function() {
-      expect(reporter.getSuitesListModel()).toEqual({items: []});
+      expect(reporter.getSuitesListModel()).toEqual({listTitle: "Passing Specs", items: []});
     });
 
     it("should provide a widget model for the progress pill", function() {
@@ -105,7 +105,7 @@ describe("JasmineReporter", function () {
       });
 
       it("should tell the view that a spec has completed", function() {
-        expect(view.specCompleted).wasCalled();
+        expect(view.specCompleted).wasCalledWith(passingSpec);
       });
 
       it("should have no failing specs", function() {
@@ -129,7 +129,7 @@ describe("JasmineReporter", function () {
       });
 
       it("should tell the view that a spec has completed", function() {
-        expect(view.specCompleted).wasCalled();
+        expect(view.specCompleted).wasCalledWith(failingSpec);
       });
 
       it("should have saved off the failing spec", function() {
@@ -295,9 +295,16 @@ describe("JasmineReporter", function () {
 
         runs(function() {
           expect(reporter.specCount).toEqual(6);
+
           expect(reporter.getPillModel().value).toEqual(1.0);
           expect(reporter.getPillModel().title).toMatch(/6 specs, 2 failures in \d+.\d+s/)
-          expect(reporter.getFailedSpecsListModel().items.length).toEqual(2);
+
+
+          var failedSpecs = reporter.getFailedSpecsListModel();
+          expect(failedSpecs.items.length).toEqual(2);
+          expect(failedSpecs.items[0].name).toEqual('sample suite spec 2.');
+          expect(failedSpecs.items[1].name).toEqual('another sample suite with a nested suite spec 2.');
+
           expect(reporter.getSuitesListModel().items.length).toEqual(2);
         });
       });

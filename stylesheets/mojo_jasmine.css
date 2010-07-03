@@ -59,6 +59,10 @@ ul.failureMessages {
   -webkit-border-image: url(../images/pill-failing.png)  0 25 0 25 repeat repeat;
 }
 
+.test-scene .palm-divider .label {
+  color: #8F0902;
+}
+
 .failed-expectation-summary th {
   text-align: left;
 }

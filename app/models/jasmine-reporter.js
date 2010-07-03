@@ -8,14 +8,17 @@ function JasmineReporter(view, jasmineEnv) {
   var startTime, endTime;
 
   var failedSpecResultsModel = {
+    listTitle: 'Failing Specs',
     items: []
   };
 
   var suitesResultsListModel = {
+    listTitle: 'Passing Specs',
     items: []
   };
 
   var progressPillModel = {};
+
   initialize();
 
   self.__defineGetter__("specCount", function() {
@@ -40,7 +43,7 @@ function JasmineReporter(view, jasmineEnv) {
   };
 
   self.reportRunnerStarting = function(runner) {
-    initialize();
+//    initialize();
     startTime = Date.now();
     specCount = runner.specs().length;
 
@@ -52,10 +55,10 @@ function JasmineReporter(view, jasmineEnv) {
   self.reportSpecResults = function(spec) {
     progressPillModel.value += specIncrement;
     if (!spec.results().passed()) {
-      failedSpecResultsModel.items.push(spec.results());
-      view.specFailed();
+      failedSpecResultsModel.items.push(new SpecResult(spec));
+      view.specFailed(spec);
     }
-    view.specCompleted();
+    view.specCompleted(spec);
   };
 
   self.reportSuiteResults = function(suite) {

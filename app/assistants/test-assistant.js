@@ -5,6 +5,7 @@ function TestAssistant() {
 TestAssistant.prototype.setup = function() {
   this.addJasmineCSS();
   this.setUpJasmineHeader();
+  this.setUpFailedSpecsList();
 
   this.controller.setupWidget('pill', {cancellable: false}, this.reporter.getPillModel());
 };
@@ -23,6 +24,17 @@ TestAssistant.prototype.addJasmineCSS = function() {
 
 TestAssistant.prototype.setUpJasmineHeader = function() {
   this.controller.sceneElement.querySelector('.version-info').innerHTML = "Jasmine " + jasmine.getEnv().versionString();
+};
+
+TestAssistant.prototype.setUpFailedSpecsList = function() {
+  var listAttributes = {
+    listTemplate: '../../plugins/jasmine-webos/app/views/test/spec-list',
+    itemTemplate: '../../plugins/jasmine-webos/app/views/test/failed-spec'
+  };
+  this.controller.setupWidget(
+    'failed-specs',
+    listAttributes,
+    this.reporter.getFailedSpecsListModel());
 };
 
 TestAssistant.prototype.activate = function() {
@@ -44,6 +56,7 @@ TestAssistant.prototype.specCompleted = function(spec) {
 
 TestAssistant.prototype.specFailed = function() {
   this.controller.sceneElement.querySelector('#pill').addClassName('fail');
+  this.controller.modelChanged(this.reporter.getFailedSpecsListModel(), this);
 };
 
 TestAssistant.prototype.suiteCompleted = function(suite) {
