@@ -11,15 +11,13 @@ TestAssistant.prototype.setup = function() {
 };
 
 TestAssistant.prototype.addJasmineCSS = function() {
-  //add the jasmine css
-  var head = document.getElementsByTagName('head')[0];
   var cssTag = document.createElement('link');
   cssTag.rel = 'stylesheet';
   cssTag.type = 'text/css';
   cssTag.href = 'plugins/jasmine-webos/stylesheets/jasmine-webos.css';
 
+  var head = document.getElementsByTagName('head')[0];
   head.appendChild(cssTag);
-
 };
 
 TestAssistant.prototype.setUpJasmineHeader = function() {
@@ -47,7 +45,6 @@ TestAssistant.prototype.writeToLog = function(message) {
 };
 
 TestAssistant.prototype.runnerStarted = function(specCount) {
-  this.startTime = Date.now();
 };
 
 TestAssistant.prototype.specCompleted = function(spec) {
@@ -76,11 +73,3 @@ TestAssistant.prototype.runnerCompleted = function(runner) {
 var pockets = {
   inPalmHost: function() {return false;}
 };
-
-
-/* TODO:
-- Widget that shows the error data, including matcher output
-- Ability to show all passing specs as full sentences (likely just one list widget)
- */
-
-
