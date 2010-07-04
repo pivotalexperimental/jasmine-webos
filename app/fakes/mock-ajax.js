@@ -13,36 +13,31 @@ Ajax.Request.prototype.response = function(responseOptions) {
 
 Ajax.Response.defaultContentType = "application/json";
 
-if (pockets.inPalmHost()) {
-  Ajax.Request.prototype.oldRequest = Ajax.Request.prototype.normalRequest;
-} else {
-  Ajax.Request.prototype.oldRequest = Ajax.Request.prototype.request;
-}
+Ajax.Request.prototype.oldRequest = Ajax.Request.prototype.request;
 
 Ajax.Request.prototype.request = function(url) {
   this.oldRequest(url);
   AjaxRequests.requests.push(this);
 };
 
-
 Ajax.RealRequest = Class.create(Ajax.Request, {
   request: function(url) {
     this.transport = Try.these(
             function() {
-              return new XMLHttpRequest()
+              return new XMLHttpRequest();
             },
             function() {
-              return new ActiveXObject('Msxml2.XMLHTTP')
+              return new ActiveXObject('Msxml2.XMLHTTP');
             },
             function() {
-              return new ActiveXObject('Microsoft.XMLHTTP')
+              return new ActiveXObject('Microsoft.XMLHTTP');
             }
             ) || false;
     this.oldRequest(url);
   }
 });
 
-AjaxRequests = {
+var AjaxRequests = {
   requests: [],
   clear: function() {
     this.requests.clear();
@@ -56,36 +51,18 @@ AjaxRequests = {
   }
 };
 
-FakeAjaxTransport = Class.create({
+var FakeAjaxTransport = Class.create({
   initialize: function() {
     this.overrideMimeType = false;
     this.readyState = 0;
   },
-  open: Mojo.doNothing,
-  send: Mojo.doNothing,
+  open: Prototype.emptyFunction,
+  send: Prototype.emptyFunction,
   setRequestHeader: jasmine.createSpy(),
   getResponseHeader: function(name) {
     return this.responseHeaders[name];
   }
 });
-
-if (pockets.inPalmHost()) {
-  /** Replace this method to bypass our Ajax.Request mock */
-  window.palmGetResource = function(pathToResource) {
-    var uri = pathToResource;
-    var responseText = null;
-    var request = new Ajax.RealRequest(uri, {
-      method: 'get',
-      asynchronous: false,
-      evalJS: false,
-      parameters: {"palmGetResource": true},
-      onSuccess: function(transport) {
-        responseText = transport.responseText;
-      }
-    });
-    return responseText;
-  };
-}
 
 beforeEach(function() {
   AjaxRequests.requests.clear();

@@ -1,61 +1,68 @@
 describe("SpecResult", function () {
   var specResult;
-  var fakePassingSpec, fakeFailingSpec;
-
+  var passingSpec, failingSpec;
   beforeEach(function() {
-    fakePassingSpec = {
-      getFullName: function() {
-        return 'A Passing spec.'
-      },
-      results: function() {
-        return {
-          passed: function() {
-            return true;
-          }
-        }
-      }
-    };
+    var env = new jasmine.Env();
+    env.updateInterval = 0;
+    var suite = new jasmine.Suite(env, 'A Suite with');
+    passingSpec = new jasmine.Spec(env, suite, 'a passing spec');
+    passingSpec.runs(function () {
+      this.expect(true).toEqual(true);
+    });
 
-    fakeFailingSpec = {
-      getFullName: function() {
-        return 'A Failing spec.'
-      },
-      results: function() {
-        return {
-          passed: function() {
-            return false;
-          }
-        }
-      }
-    };
+    failingSpec = new jasmine.Spec(env, suite, 'a failing spec');
+    failingSpec.runs(function() {
+      this.expect(true).toEqual(true);
+      this.expect(true).toEqual(false);
+      this.expect(1).toEqual(2);
+    });
+    suite.add(passingSpec);
+    suite.add(failingSpec);
   });
 
   describe("that passed", function () {
     beforeEach(function() {
-      specResult = new SpecResult(fakePassingSpec);
+      passingSpec.execute();
+      specResult = new SpecResult(passingSpec);
     });
 
     it("should report it's full name", function() {
-      expect(specResult.name).toEqual('A Passing spec.');
+      expect(specResult.name).toEqual('A Suite with a passing spec.');
     });
 
     it("should report that it passed", function() {
       expect(specResult.passed).toBe(true);
+      expect(specResult.failed).toBe(false);
     });
   });
 
   describe("that failed", function () {
     beforeEach(function() {
-      specResult = new SpecResult(fakeFailingSpec);
+      failingSpec.execute();
+      specResult = new SpecResult(failingSpec);
     });
 
-    it("should report it's full name", function() {
-      expect(specResult.name).toEqual('A Failing spec.');
+    it("should report its full name", function() {
+      expect(specResult.name).toEqual('A Suite with a failing spec.');
     });
 
     it("should report that it failed", function() {
       expect(specResult.passed).toBe(false);
+      expect(specResult.failed).toBe(true);
     });
+
+    describe("has messages", function () {
+      it("#countMessage should report the counts", function() {
+        expect(specResult.countMessage).toEqual('1 of 3 passed');
+      });
+
+      it("#expectations should return the array of the spec's expectations", function() {
+        expect(specResult.expectations.length).toEqual(3);
+      });
+
+
+    });
+
 
   });
 });

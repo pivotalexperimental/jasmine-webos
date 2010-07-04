@@ -1,4 +1,4 @@
-describe('jasmine.webOS.FakeDepot', function() {
+describe('jasmine.webos.FakeDepot', function() {
   var depot;
 
   describe('new', function() {
