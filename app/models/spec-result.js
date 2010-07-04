@@ -13,11 +13,6 @@ function SpecResult(spec) {
     return !self.passed;
   });
 
-  self.__defineGetter__("failedCount", function() {
-    var results = spec.results();
-    return results.totalCount - results.passedCount;
-  });
-
   self.__defineGetter__("countMessage", function() {
     var results = spec.results();
     return results.passedCount + ' of ' + results.totalCount + ' passed';
