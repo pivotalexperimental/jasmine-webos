@@ -1,5 +1,5 @@
 // Only include this suite if running on the emulator
-if (window && window.PalmSystem && window.PalmSystem.version) {
+if (jasmine.webos.getPalmVersionString()) {
   describe("jasmine.webos.StubSceneController", function () {
     var sceneElement, controller;
 

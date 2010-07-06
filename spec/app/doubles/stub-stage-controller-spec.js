@@ -1,4 +1,4 @@
-if (window && window.PalmSystem && window.PalmSystem.version) {
+if (jasmine.webos.getPalmVersionString()) {
 
   describe("jasmine.webos.StubStageController", function () {
     var stageController;
