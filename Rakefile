@@ -25,11 +25,33 @@ jasmine.webos.version = {
   end
 end
 
-desc "Make a "
+desc "Make a zip file that contains the entire plugin"
 task :build => :concat_sources do
 
-end
+  require 'tmpdir'
 
+  temp_dir = File.join(Dir.tmpdir, 'jasmine-webos-plugin')
+  puts "Building Jasmine webOS plugin in #{temp_dir}"
+  FileUtils.rm_r temp_dir if File.exists?(temp_dir)
+
+  plugin_root = File.join(temp_dir, 'plugins/jasmine-webos')
+  FileUtils.mkdir_p(plugin_root)
+
+  root = File.expand_path(File.dirname(__FILE__))
+  ['app', 'images', 'stylesheets', 'sources.json'].each do |path|
+    FileUtils.cp_r File.join(root, path), plugin_root
+  end
+
+  zip_file_name = File.join(temp_dir, "jasmine-webos-plugin-#{version_string}.zip")
+  puts "Zipping Plugin and moving to #{zip_file_name}"
+
+  if File.exist?(zip_file_name)
+    puts "WARNING!!! #{zip_file_name} already exists!"
+    FileUtils.rm(zip_file_name)
+  end
+
+  exec "cd #{temp_dir} && zip -r #{zip_file_name} . -x .[a-zA-Z0-9]*"
+end
 
 
 def build_sources
@@ -44,6 +66,6 @@ end
 
 def version_data
   require 'json'
-  @version ||= JSON.parse(File.new("version.json").read);
+  @version ||= JSON.parse(File.new("src/version.json").read);
 end
 
