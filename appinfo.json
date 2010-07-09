@@ -1,0 +1,9 @@
+{
+	"id": "com.pivotallabs.jasmine-webos-test",
+	"version": "1.0.0",
+	"vendor": "My Company",
+	"type": "web",
+	"main": "index.html",
+	"title": "Jasmine webOS Test",
+	"icon": "icon.png"
+}

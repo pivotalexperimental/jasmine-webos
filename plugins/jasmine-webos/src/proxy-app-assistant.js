@@ -1,9 +1,10 @@
 /* Test runner bootstrapping: swap in our own AppAssistant,
- * which will remove itself immediately and run tests if requested
+ * which will remove itself immediately and run tests if requested.
+ * Note, if AppAssistant is not defined first, we define a basic one
  */
-//if (Mojo && !window['AppAssistant']) {
-//  throw "Jasmine webOS error: You must define an AppAssistant for Jasmine specs to run";
-//}
+if (Mojo && !window['AppAssistant']) {
+  AppAssistant = function() {};
+}
 jasmine.webos.originalAppAssistant_ = window['AppAssistant'];
 jasmine.webos.originalStageAssistant = window['StageAssistant'];
 jasmine.webos.isTestingPockets_ = window['AppAssistant'] && AppAssistant.isPockets;

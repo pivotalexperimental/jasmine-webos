@@ -56,8 +56,6 @@ describe("JasmineReporter", function () {
       });
     });
 
-
-
     it("should provide a collection of all suites for use as widget models", function() {
       expect(reporter.getSuitesListModel()).toEqual({listTitle: "Passing Specs", items: []});
     });
