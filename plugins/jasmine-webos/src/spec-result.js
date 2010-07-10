@@ -1,6 +1,19 @@
 function SpecResult(spec) {
   var self = this;
 
+  var expectations = spec.results().items_;
+  var failedExpectations = [];
+
+  for (var i=0; i < expectations.length; i++) {
+    var expectation = expectations[i];
+    if (!expectation.passed()) {
+      failedExpectations.push({
+        number: i+1,
+        message: expectation.message
+      });
+    }
+  }
+
   self.__defineGetter__("name", function() {
     return spec.getFullName();
   });
@@ -19,7 +32,11 @@ function SpecResult(spec) {
   });
 
   self.__defineGetter__("expectations", function() {
-    return spec.results().items_;
+    return expectations;
+  });
+
+  self.__defineGetter__("failedExpectations", function() {
+    return failedExpectations;
   });
 
   return self;

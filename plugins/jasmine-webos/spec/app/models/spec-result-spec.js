@@ -34,6 +34,11 @@ describe("SpecResult", function () {
       expect(specResult.passed).toBe(true);
       expect(specResult.failed).toBe(false);
     });
+
+    it("should have no failed expectations", function() {
+      expect(specResult.failedExpectations.length).toEqual(0);
+    });
+
   });
 
   describe("that failed", function () {
@@ -59,11 +64,23 @@ describe("SpecResult", function () {
       it("#expectations should return the array of the spec's expectations", function() {
         expect(specResult.expectations.length).toEqual(3);
       });
-
-
     });
 
+    describe("#failedExpectations", function () {
+      it("should have the correct count", function() {
+        expect(specResult.failedExpectations.length).toEqual(2);
+      });
 
+      it("with each one having it's number and message", function() {
+        var failedExpectation = specResult.failedExpectations[0];
+        expect(failedExpectation.number).toEqual(2);
+        expect(failedExpectation.message).toEqual("Expected true to equal false.");
+
+        var failedExpectation = specResult.failedExpectations[1];
+        expect(failedExpectation.number).toEqual(3);
+        expect(failedExpectation.message).toEqual("Expected 1 to equal 2.");
+      });
+    });
   });
 });
 

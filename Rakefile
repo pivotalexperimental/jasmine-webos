@@ -4,7 +4,7 @@ require 'colored'
 task :default => :test
 
 desc "run tests on Palm webOS Emulator"
-task :test => :sources do
+task :test => [:concat_sources, :sources] do
   system('palm-package -o .. .')
 
   app_id = get_app_id

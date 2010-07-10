@@ -1,6 +1,6 @@
 // This suite is for testing rendering of spec results
 
-xdescribe("This is a sample suite", function () {
+describe("This is a sample suite", function () {
 
   describe("with a nested suite", function () {
     it("with a failing spec", function() {
@@ -17,7 +17,7 @@ xdescribe("This is a sample suite", function () {
     expect(false).toEqual(true);
   });
 
-  it("with yet another failing spec with three expectations", function() {
+  it("with yet another failing spec with four expectations but only one passes", function() {
     expect(1).toEqual(3.5);
     expect(14).toBeLessThan(2);
     expect(false).toEqual(false);

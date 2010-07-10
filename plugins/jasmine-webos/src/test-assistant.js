@@ -27,35 +27,20 @@ TestAssistant.prototype.setUpJasmineHeader = function() {
 TestAssistant.prototype.setUpFailedSpecsList = function() {
   var listAttributes = {
     listTemplate: '../../plugins/jasmine-webos/app/views/test/spec-list',
-    itemTemplate: '../../plugins/jasmine-webos/app/views/test/failed-spec',
-    onItemRendered: this.addFailureMessages.bind(this)
+    itemTemplate: '../../plugins/jasmine-webos/app/views/test/failed-spec'
   };
   this.controller.setupWidget(
     'failed-specs',
     listAttributes,
     this.reporter.getFailedSpecsListModel());
-};
-
-TestAssistant.prototype.addFailureMessages = function(widget, specResult, itemElement) {
-  var failuresElement = itemElement.querySelector('.failures');
-
-  var failMessages = [];
-  for (var i=0; i < specResult.expectations.length; i++) {
-    var expectation = specResult.expectations[i];
-    if (!expectation.passed()) {
-      failMessages.push( '<span class="num-bullet">' + (i + 1) + '.</span> ' + expectation.message);
-    }
-  }
-
-  var messages = '';
-  var className =  (failMessages.length == 1) ? 'single' : 'first';
-
-  for( i=0; i < failMessages.length; i++ ) {
-    messages += '<div class="palm-row ' + className +'">' + failMessages[i] + '</div>';
-    className = (i == (failMessages.length - 2 )) ? 'last' : '';
-  }
-
-  failuresElement.innerHTML = messages;
+  var self = this;
+  var failedSpecList = this.controller.sceneElement.querySelector('#failed-specs');
+  Mojo.Event.listen(failedSpecList, Mojo.Event.listTap, function(event) {
+    self.controller.stageController.pushScene({
+      name: 'error',
+      sceneTemplate: '../../plugins/jasmine-webos/app/views/error/error-scene'
+    }, event.item);
+  });
 };
 
 TestAssistant.prototype.activate = function() {
@@ -94,5 +79,7 @@ TestAssistant.prototype.runnerCompleted = function(runner) {
 
 // TODO: Handle this better
 var pockets = {
-  inPalmHost: function() {return false;}
+  inPalmHost: function() {
+    return false;
+  }
 };
