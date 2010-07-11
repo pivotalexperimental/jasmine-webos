@@ -1,4 +1,5 @@
 .idea
 .DS_Store
+sources.json
 mojo
 plugins/jasmine-webos/app/lib/jasmine-webos.js
