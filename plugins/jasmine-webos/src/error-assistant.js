@@ -9,7 +9,7 @@ ErrorAssistant.prototype.setup = function() {
 ErrorAssistant.prototype.setUpExpectationList = function() {
   var listAttributes = {
     listTemplate: '../../plugins/jasmine-webos/app/views/error/spec-result',
-    itemTemplate: '../../plugins/jasmine-webos/app/views/error/failed-expectation',
+    itemTemplate: '../../plugins/jasmine-webos/app/views/error/expectation',
     itemsProperty: 'expectations'
   };
   this.controller.setupWidget(

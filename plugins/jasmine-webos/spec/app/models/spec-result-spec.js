@@ -66,6 +66,19 @@ describe("SpecResult", function () {
       });
     });
 
+    describe("#expectations", function () {
+      it("should have the correct count", function() {
+        expect(specResult.expectations.length).toEqual(3);
+      });
+
+      it("with each one having it's number, message and pass state", function() {
+        var expectation = specResult.expectations[0];
+        expect(expectation.count).toEqual(1);
+        expect(expectation.didPass).toEqual(true);
+        expect(expectation.message).toEqual("Passed.");
+      });
+    });
+
     describe("#failedExpectations", function () {
       it("should have the correct count", function() {
         expect(specResult.failedExpectations.length).toEqual(2);
@@ -73,11 +86,13 @@ describe("SpecResult", function () {
 
       it("with each one having it's number and message", function() {
         var failedExpectation = specResult.failedExpectations[0];
-        expect(failedExpectation.number).toEqual(2);
+        expect(failedExpectation.count).toEqual(2);
+        expect(failedExpectation.didPass).toEqual(false);
         expect(failedExpectation.message).toEqual("Expected true to equal false.");
 
-        var failedExpectation = specResult.failedExpectations[1];
-        expect(failedExpectation.number).toEqual(3);
+        failedExpectation = specResult.failedExpectations[1];
+        expect(failedExpectation.count).toEqual(3);
+        expect(failedExpectation.didPass).toEqual(false);
         expect(failedExpectation.message).toEqual("Expected 1 to equal 2.");
       });
     });

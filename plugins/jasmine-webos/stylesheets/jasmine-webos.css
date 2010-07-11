@@ -33,28 +33,30 @@
   color: #8f0902;
 }
 
-.test-scene .failures {
-  /*background-color: pink;*/
-  margin: 0 0 0 -10px;
-  padding: 0;
-  width: 320px;
-}
-
-.test-scene .failures .num-bullet {
-  color: #8f0902;
-}
-.test-scene .failures .palm-row {
-  font-size: 16px;
-  color: #222;
-}
-
-.test-scene .failures .palm-row.first {
- padding-top: 10px;
-}
-
 .error-scene .palm-page-header .title {
   text-transform: none;
   color: #8f0902;
+}
+
+.error-scene .palm-row {
+  font-size: 16px;
+  padding: 12px;
+}
+
+.error-scene .palm-row .expectation-message {
+}
+
+.error-scene .palm-row.true .expectation-message {
+  color: #338f02;
+}
+
+.error-scene .palm-row.false .expectation-message {
+  color: #8f0902;
+}
+
+
+.error-scene .count {
+  color: #222;
 }
 
 /* OLD CSS, remove if not used */

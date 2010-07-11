@@ -1,16 +1,20 @@
 function SpecResult(spec) {
   var self = this;
 
-  var expectations = spec.results().items_;
-  var failedExpectations = [];
+  var expectations = [];
+  for (var i=0; i < spec.results().items_.length; i++) {
+    var e = spec.results().items_[i];
+    expectations.push({
+      didPass: e.passed(),
+      count: i+1,
+      message: e.message
+    });
+  }
 
-  for (var i=0; i < expectations.length; i++) {
-    var expectation = expectations[i];
-    if (!expectation.passed()) {
-      failedExpectations.push({
-        number: i+1,
-        message: expectation.message
-      });
+  var failedExpectations = [];
+  for (i=0; i < expectations.length; i++) {
+    if (!expectations[i].didPass) {
+      failedExpectations.push(expectations[i]);
     }
   }
 
