@@ -61,7 +61,7 @@ task :jasmine => ['jasmine:server']
 desc "Put all of Jasmine for webOS into one file"
 task :concat_sources do
 
-  puts 'Building Jasmine webOS from source'
+  puts 'Building Jasmine webOS distribution file'.yellow
 
   sources = build_sources
 
@@ -72,7 +72,7 @@ task :concat_sources do
 
   File.open("plugins/jasmine-webos/app/lib/jasmine-webos.js", 'w') do |single_file|
     sources.each do |source_filename|
-      puts "Adding #{source_filename} to jasmine-webos.js".yellow
+      puts "Adding #{source_filename} to jasmine-webos.js"
       single_file.puts(File.read(source_filename))
     end
 
@@ -93,31 +93,30 @@ task :build => :concat_sources do
   require 'tmpdir'
 
   temp_dir = File.join(Dir.tmpdir, 'jasmine-webos-plugin')
-  puts "Building Jasmine webOS plugin in #{temp_dir}"
+  puts "Building Jasmine webOS plugin in #{temp_dir}".yellow
   FileUtils.rm_r temp_dir if File.exists?(temp_dir)
 
-  plugin_root = File.join(temp_dir, 'plugins/jasmine-webos')
-  FileUtils.mkdir_p(plugin_root)
+  build_root = File.join(temp_dir, 'plugins/jasmine-webos')
+  FileUtils.mkdir_p(build_root)
 
-  root = File.expand_path(File.dirname(__FILE__))
+  plugin_root = File.join(File.expand_path(File.dirname(__FILE__)), 'plugins/jasmine-webos')
   ['app', 'images', 'stylesheets', 'sources.json'].each do |path|
-    FileUtils.cp_r File.join(root, path), plugin_root
+    FileUtils.cp_r File.join(plugin_root, path), build_root
   end
 
-  zip_file_name = File.join("#{root}/..", "jasmine-webos-plugin-#{version_string}.zip")
-  puts "Zipping Plugin and moving to #{zip_file_name}"
+  zip_file_name = File.join("#{plugin_root}/..", "jasmine-webos-plugin-#{version_string}.zip")
 
   if File.exist?(zip_file_name)
     puts "WARNING!!! #{zip_file_name} already exists!"
     FileUtils.rm(zip_file_name)
   end
 
+  puts "Zipping Jasmine webOS plugin to plugins/jasmine-webos-plugin-#{version_string}.zip".yellow
   exec "cd #{temp_dir} && zip -r #{zip_file_name} . -x .[a-zA-Z0-9]*"
-  exec "mv #{zip_file_name} #{root}/.."
+  exec "ls -alF plugins/*.zip"
 end
 
 def build_sources
-#  jasmine_webos_source_dir = File.join(root, 'plugins/jasmine-webos/src')
   jasmine_webos_source_dir = 'plugins/jasmine-webos/src'
   sources = [File.join(jasmine_webos_source_dir, 'jasmine-webos-core.js'),
              File.join(jasmine_webos_source_dir, 'proxy-app-assistant.js')]
