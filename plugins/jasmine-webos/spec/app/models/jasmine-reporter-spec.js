@@ -57,7 +57,7 @@ describe("JasmineReporter", function () {
     });
 
     it("should provide a collection of all suites for use as widget models", function() {
-      expect(reporter.getSuitesListModel()).toEqual({listTitle: "Passing Specs", items: []});
+      expect(reporter.getSuitesListModel()).toEqual({listTitle: "All Specs", items: []});
     });
 
     it("should provide a widget model for the progress pill", function() {

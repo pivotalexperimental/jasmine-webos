@@ -14,7 +14,7 @@ function JasmineReporter(view, jasmineEnv) {
   };
 
   var suitesResultsListModel = {
-    listTitle: 'Passing Specs',
+    listTitle: 'All Specs',
     items: []
   };
 
@@ -44,7 +44,7 @@ function JasmineReporter(view, jasmineEnv) {
   };
 
   self.reportRunnerStarting = function(runner) {
-//    initialize();
+    initialize();
     startTime = Date.now();
     specCount = runner.specs().length;
 
