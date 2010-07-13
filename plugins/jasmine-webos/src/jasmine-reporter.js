@@ -44,8 +44,7 @@ function JasmineReporter(view, jasmineEnv) {
   };
 
   self.reportRunnerStarting = function(runner) {
-    initialize();
-    startTime = Date.now();
+    startTime = startTime || Date.now();
     specCount = runner.specs().length;
 
     specIncrement = specCount ? 1 / specCount : 1;
@@ -70,7 +69,7 @@ function JasmineReporter(view, jasmineEnv) {
   };
 
   self.reportRunnerResults = function(runner) {
-    endTime = Date.now();
+    endTime = endTime || Date.now();
     progressPillModel.value = 1.0;
     progressPillModel.title = specCount + ' specs, ' + failedSpecResultsModel.items.length + ' failures in ' + (endTime - startTime)/1000 + 's';
     view.runnerCompleted();
