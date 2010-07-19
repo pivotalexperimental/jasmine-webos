@@ -13,7 +13,7 @@ function JasmineReporter(view, jasmineEnv) {
     items: []
   };
 
-  var suitesResultsListModel = {
+  var allSpecsResultsListModel = {
     listTitle: 'All Specs',
     items: []
   };
@@ -30,8 +30,8 @@ function JasmineReporter(view, jasmineEnv) {
     return failedSpecResultsModel;
   };
 
-  self.getSuitesListModel = function() {
-    return suitesResultsListModel;
+  self.getAllSpecsListModel = function() {
+    return allSpecsResultsListModel;
   };
 
   self.getPillModel = function() {
@@ -63,7 +63,7 @@ function JasmineReporter(view, jasmineEnv) {
 
   self.reportSuiteResults = function(suite) {
     if (!suite.parentSuite) {
-      suitesResultsListModel.items.push(suite.results());
+      allSpecsResultsListModel.items.push(suite.results());
     }
     view.suiteCompleted();
   };
@@ -79,7 +79,7 @@ function JasmineReporter(view, jasmineEnv) {
 
   function initialize() {
     failedSpecResultsModel.items.clear();
-    suitesResultsListModel.items.clear();
+    allSpecsResultsListModel.items.clear();
     progressPillModel.value = 0.0;
     progressPillModel.title = "Running Specs...";
     specCount = 0.0;

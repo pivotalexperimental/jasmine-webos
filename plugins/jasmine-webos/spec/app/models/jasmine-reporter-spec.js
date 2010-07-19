@@ -56,8 +56,8 @@ describe("JasmineReporter", function () {
       });
     });
 
-    it("should provide a collection of all suites for use as widget models", function() {
-      expect(reporter.getSuitesListModel()).toEqual({listTitle: "All Specs", items: []});
+    it("should provide a collection of all specs for use as widget models", function() {
+      expect(reporter.getAllSpecsListModel()).toEqual({listTitle: "All Specs", items: []});
     });
 
     it("should provide a widget model for the progress pill", function() {
@@ -174,7 +174,7 @@ describe("JasmineReporter", function () {
     });
 
     it("should save the suite's results", function() {
-      expect(reporter.getSuitesListModel().items.length).toEqual(1);
+      expect(reporter.getAllSpecsListModel().items.length).toEqual(1);
     });
 
     it("should tell the view the suite is complete", function() {
@@ -260,7 +260,7 @@ describe("JasmineReporter", function () {
           expect(reporter.getPillModel().value).toEqual(1.0);
           expect(reporter.getPillModel().title).toMatch(/6 specs, 0 failures in \d+.\d+s/);
           expect(reporter.getFailedSpecsListModel().items.length).toEqual(0);
-          expect(reporter.getSuitesListModel().items.length).toEqual(2);
+          expect(reporter.getAllSpecsListModel().items.length).toEqual(2);
         });
       });
     });
@@ -325,7 +325,7 @@ describe("JasmineReporter", function () {
           expect(failedSpecs.items[0].name).toEqual('sample suite spec 2.');
           expect(failedSpecs.items[1].name).toEqual('another sample suite with a nested suite spec 2.');
 
-          expect(reporter.getSuitesListModel().items.length).toEqual(2);
+          expect(reporter.getAllSpecsListModel().items.length).toEqual(2);
         });
       });
     });
