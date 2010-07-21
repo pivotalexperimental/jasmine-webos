@@ -1,5 +1,16 @@
 function TestAssistant() {
   this.reporter = new JasmineReporter(this, jasmine.getEnv());
+
+  this.listAttributes = {
+    listTemplate: '../../plugins/jasmine-webos/app/views/test/spec-list',
+    itemTemplate: '../../plugins/jasmine-webos/app/views/test/spec',
+    renderLimit: 500,
+    onItemRendered: function(widget, item, node) {
+      if (!item.passed) {
+        node.writeAttribute({'x-mojo-tap-highlight': 'momentary'});
+      }
+    }
+  };
 }
 
 TestAssistant.prototype.setup = function() {
@@ -26,59 +37,63 @@ TestAssistant.prototype.setUpJasmineHeader = function() {
 };
 
 TestAssistant.prototype.setUpFailedSpecsList = function() {
-  var listAttributes = {
-    listTemplate: '../../plugins/jasmine-webos/app/views/test/spec-list',
-    itemTemplate: '../../plugins/jasmine-webos/app/views/test/failed-spec',
-    renderLimit: 500
-  };
 
   this.controller.setupWidget(
       'failed-specs',
-      listAttributes,
+      this.listAttributes,
       this.reporter.getFailedSpecsListModel());
 
   var failedSpecList = this.controller.sceneElement.querySelector('#failed-specs');
 
-  var self = this;
-  Mojo.Event.listen(failedSpecList, Mojo.Event.listTap, function(event) {
-    self.controller.stageController.pushScene({
-      name: 'error',
-      sceneTemplate: '../../plugins/jasmine-webos/app/views/error/error-scene'
-    }, event.item);
-  });
+  Mojo.Event.listen(failedSpecList, Mojo.Event.listTap, this.listTapHandler.bind(this));
 };
 
 TestAssistant.prototype.setUpCommandMenu = function() {
   this.controller.setupWidget(Mojo.Menu.commandMenu, {}, {
     visible: true,
-    items: [{},{ label: 'All Results', command: 'all'}]
+    items: [
+      {},
+      { label: 'All Results', command: 'all'}
+    ]
   });
 };
 
 TestAssistant.prototype.setUpAllSpecsList = function() {
-  var listAttributes = {
-    listTemplate: '../../plugins/jasmine-webos/app/views/test/spec-list',
-    itemTemplate: '../../plugins/jasmine-webos/app/views/test/spec',
-    renderLimit: 500
-  };
-
   this.controller.setupWidget(
       'all-specs',
-      listAttributes,
+      this.listAttributes,
       this.reporter.getAllSpecsListModel());
+  var allSpecList = this.controller.sceneElement.querySelector('#all-specs');
+  Mojo.Event.listen(allSpecList, Mojo.Event.listTap, this.listTapHandler.bind(this));
 };
 
 TestAssistant.prototype.activate = function() {
   jasmine.getEnv().execute();
 };
 
+TestAssistant.prototype.listTapHandler = function(event) {
+  if (event.item.passed) {
+    return;
+  }
+
+  this.controller.stageController.pushScene({
+    name: 'error',
+    sceneTemplate: '../../plugins/jasmine-webos/app/views/error/error-scene'
+  }, event.item);
+
+};
+
+
 TestAssistant.prototype.handleCommand = function(event) {
-  switch(event.command) {
+  switch (event.command) {
+
     case 'all':
-    this.setUpAllSpecsList();
-    this.controller.instantiateChildWidgets(this.controller.sceneElement);
+      this.setUpAllSpecsList();
+      this.controller.instantiateChildWidgets(this.controller.sceneElement);
+      break;
+
     default:
-    event.stop();
+      event.stop();
   }
 };
 
