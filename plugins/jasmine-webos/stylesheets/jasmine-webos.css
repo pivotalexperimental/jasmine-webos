@@ -6,7 +6,7 @@
   -webkit-border-image: url(../images/pill-failing.png)  0 25 0 25 repeat repeat;
 }
 
-.test-scene .palm-divider .label {
+.test-scene .palm-divider .label.fail {
   color: #8f0902;
 }
 
@@ -20,18 +20,22 @@
 
 .test-scene .palm-row .spec-name {
   font-size: 15px;
-  color: #333;
 }
 
-.test-scene .palm-list.fail .palm-row.failed-spec .count {
+.test-scene .palm-row.true .spec-name {
+  color: #1a3812;
+}
+
+.test-scene .palm-row.false .spec-name {
+  color: #8f0902;
+}
+
+.test-scene .count {
   padding: 5px 15px;
   font-size: 14px;
   color: #333;
 }
 
-.test-scene .palm-list.fail .palm-row.failed-spec .spec-name {
-  color: #8f0902;
-}
 
 .error-scene .palm-page-header .title {
   text-transform: none;
@@ -47,7 +51,7 @@
 }
 
 .error-scene .palm-row.true .expectation-message {
-  color: #338f02;
+  color: #336002;
 }
 
 .error-scene .palm-row.false .expectation-message {
@@ -61,91 +65,91 @@
 
 /* OLD CSS, remove if not used */
 
-.row.jasmine_spec {
-  padding-top: 5px;
-  padding-bottom: 0;
-}
+/*.row.jasmine_spec {*/
+  /*padding-top: 5px;*/
+  /*padding-bottom: 0;*/
+/*}*/
 
-.jasmine_spec:hover {
-  background: lightgray;
-}
+/*.jasmine_spec:hover {*/
+  /*background: lightgray;*/
+/*}*/
 
-.spec {
-  padding: 8px 8px 8px 35px;
-  background: 10px 8px no-repeat; /*color:#ddd;*/
-}
+/*.spec {*/
+  /*padding: 8px 8px 8px 35px;*/
+  /*background: 10px 8px no-repeat; *//*color:#ddd;*/
+/*}*/
 
-.row.last .spec {
-  padding-bottom: 10px;
-}
+/*.row.last .spec {*/
+  /*padding-bottom: 10px;*/
+/*}*/
 
-.row.scene {
-  padding-left: 10px;
-}
+/*.row.scene {*/
+  /*padding-left: 10px;*/
+/*}*/
 
-.progress_complete {
-  margin-top: -2px;
-  margin-left: 234px;
-  height: 48px;
-  width: 48px;
-}
+/*.progress_complete {*/
+  /*margin-top: -2px;*/
+  /*margin-left: 234px;*/
+  /*height: 48px;*/
+  /*width: 48px;*/
+/*}*/
 
-.row .pending {
-  background-image: url( ../lib/jasmine/images/pending-16.png );
-}
+/*.row .pending {*/
+  /*background-image: url( ../lib/jasmine/images/pending-16.png );*/
+/*}*/
 
-.row .passed {
-  background-image: url( ../lib/jasmine/images/go-16.png );
-}
+/*.row .passed {*/
+  /*background-image: url( ../lib/jasmine/images/go-16.png );*/
+/*}*/
 
-.row .failed {
-  background-image: url( ../lib/jasmine/images/fail-16.png );
-  color: red;
-}
+/*.row .failed {*/
+  /*background-image: url( ../lib/jasmine/images/fail-16.png );*/
+  /*color: red;*/
+/*}*/
 
-ul.failureMessages {
-  padding: 0 0 0 8px;
-  margin: 0;
-  font-size: 16px;
-}
+/*ul.failureMessages {*/
+  /*padding: 0 0 0 8px;*/
+  /*margin: 0;*/
+  /*font-size: 16px;*/
+/*}*/
 
-.download-pill .download-filename {
-  margin-top: 5px;
-}
+/*.download-pill .download-filename {*/
+  /*margin-top: 5px;*/
+/*}*/
 
-.failed-expectation-summary th {
-  text-align: left;
-}
+/*.failed-expectation-summary th {*/
+  /*text-align: left;*/
+/*}*/
 
-.failed-expectation-summary td {
-  vertical-align: top;
-}
+/*.failed-expectation-summary td {*/
+  /*vertical-align: top;*/
+/*}*/
 
-.pretty-printed {
-  border: 1px solid gray;
-  font-size: .9em;
-}
+/*.pretty-printed {*/
+  /*border: 1px solid gray;*/
+  /*font-size: .9em;*/
+/*}*/
 
-.pretty-printed table {
-  width: 100%;
-  border: 1px solid black;
-  color: #222;
-}
+/*.pretty-printed table {*/
+  /*width: 100%;*/
+  /*border: 1px solid black;*/
+  /*color: #222;*/
+/*}*/
 
-.pretty-printed tr th {
-  background: #fff;
-  text-align: left;
-}
+/*.pretty-printed tr th {*/
+  /*background: #fff;*/
+  /*text-align: left;*/
+/*}*/
 
-.pretty-printed tr td {
-  border-top: 1px dashed black;
-  margin: 0;
-}
+/*.pretty-printed tr td {*/
+  /*border-top: 1px dashed black;*/
+  /*margin: 0;*/
+/*}*/
 
-.pretty-printed .object .key.prototype {
-  color: purple;
-}
+/*.pretty-printed .object .key.prototype {*/
+  /*color: purple;*/
+/*}*/
 
-.pretty-printed .getter {
-  font-style: italic;
-}
+/*.pretty-printed .getter {*/
+  /*font-style: italic;*/
+/*}*/

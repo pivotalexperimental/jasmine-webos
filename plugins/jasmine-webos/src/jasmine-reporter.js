@@ -58,13 +58,11 @@ function JasmineReporter(view, jasmineEnv) {
       failedSpecResultsModel.items.push(new SpecResult(spec));
       view.specFailed(spec);
     }
+    allSpecsResultsListModel.items.push(new SpecResult(spec));
     view.specCompleted(spec);
   };
 
   self.reportSuiteResults = function(suite) {
-    if (!suite.parentSuite) {
-      allSpecsResultsListModel.items.push(suite.results());
-    }
     view.suiteCompleted();
   };
 

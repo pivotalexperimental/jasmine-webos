@@ -1,5 +1,4 @@
 // This suite is for testing rendering of spec results
-
 xdescribe("This is a sample suite", function () {
 
   describe("with a nested suite", function () {
