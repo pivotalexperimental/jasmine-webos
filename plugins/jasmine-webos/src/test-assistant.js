@@ -33,7 +33,8 @@ TestAssistant.prototype.addJasmineCSS = function() {
 };
 
 TestAssistant.prototype.setUpJasmineHeader = function() {
-  this.controller.sceneElement.querySelector('.version-info').innerHTML = "Jasmine " + jasmine.getEnv().versionString();
+  this.controller.sceneElement.querySelector('.jasmine-info').innerHTML = "Jasmine " + jasmine.getEnv().versionString();
+  this.controller.sceneElement.querySelector('.jasmine-webos-info').innerHTML = jasmine.webos.versionString();
 };
 
 TestAssistant.prototype.setUpFailedSpecsList = function() {

@@ -55,3 +55,12 @@ jasmine.webos.runTests = function(stageController) {
 jasmine.webos.explode = function() {
   throw "jasmine.webos.explode does not expect to be called";
 };
+
+jasmine.webos.versionString = function() {
+  return 'Jasmine webOS ' +
+      jasmine.webos.version.major + '.' +
+      jasmine.webos.version.minor + '.' +
+      jasmine.webos.version.build +
+      ' v.' +
+      jasmine.webos.version.revision;
+};
