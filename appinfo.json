@@ -5,5 +5,5 @@
 	"type": "web",
 	"main": "index.html",
 	"title": "Jasmine webOS Test",
-	"icon": "icon.png"
+	"icon": "jasmine-icon.png"
 }
