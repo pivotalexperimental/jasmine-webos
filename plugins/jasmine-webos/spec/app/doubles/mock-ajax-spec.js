@@ -1,4 +1,4 @@
-describe("Mock Ajax", function() {
+describe("Ajax Mock", function() {
   var request, onSuccess, onFailure, onComplete;
 
   beforeEach(function() {
