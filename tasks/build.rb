@@ -21,7 +21,7 @@ jasmine.webos.version = {
   "major": #{version_data['major']},
   "minor": #{version_data['minor']},
   "build": #{version_data['build']},
-  "revision": #{Time.now.to_i}
+  "revision": #{version_data['revision']}
 };
 }
   end
@@ -69,13 +69,11 @@ def version_string
 end
 
 def version_data
-  @version ||= JSON.parse(File.new("plugins/jasmine-webos/version.json").read)
-# TODO: Move version to appinfo.json as canonical source
-#  @version ||= begin
-#    appinfo = JSON.parse(File.new("src/version.json").read)
-#    v = appinfo['version'].split('.')
-#    { 'major' => v[0], 'minor' => v[1], 'build' => v[2] }
-#  end
+  @version ||= begin
+    appinfo = JSON.parse(File.new("appinfo.json").read)
+    v = appinfo['version'].split('.')
+    { 'major' => v[0], 'minor' => v[1], 'build' => v[2], 'revision' => Time.now.to_i }
+  end
 end
 
 def root
