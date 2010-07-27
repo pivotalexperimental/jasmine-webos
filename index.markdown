@@ -1,6 +1,6 @@
 # Jasmine webOS
 
-Jasmine webOS is a library that allows you to use Jasmine to test-drive Palm&reg; webOS&trade; applications. 
+Jasmine webOS is a library that allows you to use Jasmine to test-drive Palm&reg; webOS&trade; applications. [Jasmine](http://pivotal.github.com/jasmine) provides the syntax for specs and the environment to execute them. Jasmine webOS adds platform-specific testing pieces for testing Scene Assistants, the Palm Depot, Ajax calls and the like. 
 
 This guide assumes you already have the Palm Mojo SDK installed and have (at least) an application generated on your file system. Jasmine webOS is known to be compatible with Palm webOS v.1.4.x.
 
@@ -32,9 +32,9 @@ Now that you can run specs, you need to write some. Here's how.
 ### Setup
 
   1. Make a `spec` directory in the root of your application
-  1. Build a directory tree under `spec` similar to your application. For example, `spec/app/assistants`, `spec/app/models`, etc.
+  1. Build a directory tree under `spec` that mirrors your application code. For example, `spec/app/assistants`, `spec/app/models`, etc.
   1. For each file in `app` you should have a corresponding file in `spec/app`. So if you have a file that handles foo in `app/models/foo.js`, your spec file should be `spec/models/foo-spec.js`
-  1. When you create a spec file, make sure to include that file in `sources.json` _after_ the Jasmine files. To extend the example:
+  1. When you create a spec file, make sure to include that file in `sources.json` _after_ the Jasmine files. To extend the example from above:
   
   `{ "source": "plugins/jasmine-webos/app/lib/jasmine.js"},
   { "source": "plugins/jasmine-webos/app/lib/jasmine-webos.js"},
@@ -44,9 +44,11 @@ Now that you can run specs, you need to write some. Here's how.
 
 For any code that does not make any Palm Mojo API calls, writing your specs is straightforward. Write your specs according to the [Jasmine User's Guide]().
 
-### Mojo Scene Assistants
+### Mojo Dependent Code
 
-Mojo Scene Assistants are a little more complicated. Under test, you do not have a fully created scene assistant. You do have an in-memory DOM, but Mojo does not know about it. This means you cannot fire an event and expect your handlers to be called. But you can manipulate your DOM elements and then verify that they've changed appropriately - checking classes, visibility, or contents.
+Any code that is dependent on Mojo has some limitations. You can test Scene Assistants, but with a few key limitations. Jasmine webOS includes a Fake Mojo Depot for testing interactions with storage and a Mock Ajax implementation for testing making calls to remote servers.
+
+You can find examples of each in the [Sample Application]() (coming soon).
 
 ### Add Spec Files to `sources.json`
 
@@ -74,14 +76,16 @@ Remove these files from `sources.json` and exclude your `spec` directory when pa
 
 ## About & Thanks
 
-Jasmine webOS is the product of nearly 18 months of work at Pivotal Labs writing webOS applications for clients and ourselves. First we wrote [Jasmine](http://pivotal.github.com/jasmine) in order to test drive webOS applications. We quickly found that we needed more in a test framework to handle Scene Assistants, the Palm Depot, Ajax calls and the like. Jasmine webOS is a more usable grouping of the essential code so that agile developers can test drive robust applications on the platform.
-
-Big thanks to Pivotal Labs, Palm, and all the Mobile Pivots who have contributed: Rajan, Xian, Adam, Carl, JB, (another) Adam, Erik, Carl, Kelly, Joe, Jonathan, Ryan, Bosh, and anyone I've missed.
+Big thanks to Pivotal Labs, Palm, and all the Mobile Pivots who have contributed: Rajan, Xian, Adam, Carl, JB, (another) Adam, Nathan, Joseph, Erik, Carl, Kelly, Joe, Jonathan, Ryan, Bosh, and anyone I've missed.
 
 ## Contact
 
-
+  * Discussion List: 
+  * Development Discussion List:
+  * Tracker Project:
+  * Twitter: 
 
 ## Contributing
 
+We're happy to accept pull requests that come with specs. Please look at the repo and keep your code in the same style. Please let us know what you're up to on the development mailing list.
 
