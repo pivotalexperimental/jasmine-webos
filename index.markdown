@@ -1,91 +1,47 @@
+---
+layout: main.html
+title: Jasmine webOS
+
+---
+
 # Jasmine webOS
 
-Jasmine webOS is a library that allows you to use Jasmine to test-drive Palm&reg; webOS&trade; applications. [Jasmine](http://pivotal.github.com/jasmine) provides the syntax for specs and the environment to execute them. Jasmine webOS adds platform-specific testing pieces for testing Scene Assistants, the Palm Depot, Ajax calls and the like. 
+Jasmine webOS is a library that allows you to use Jasmine to test-drive Palm&reg; webOS&trade; applications. [Jasmine](http://pivotal.github.com/jasmine) provides the syntax for specs and the environment to execute them. Jasmine webOS adds platform-specific testing pieces for testing Scene Assistants, the Palm Depot, Ajax calls and the like.
 
 This guide assumes you already have the Palm Mojo SDK installed and have (at least) an application generated on your file system. Jasmine webOS is known to be compatible with Palm webOS v.1.4.x.
 
-## Download and Install
+___DOWNLOAD FILE HERE___
 
-  1. Download the Jasmine webOS zipfile
-  1. Unzip it into the root of your application. You should now have a `plugins/jasmine-webos` directory
-  1. Download [Jasmine](http://pivotal.github.com/jasmine)
-  1. Extract `jasmine.js` into `plugins/jasmine-webos/app/lib`
-  1. Add these two entries into your application's `sources.json` file, preferably after all your application code. Order is important: `jasmine.js` _must_ be before `jasmine-webos.js`
-  
-    `{ "source": "plugins/jasmine-webos/app/lib/jasmine.js"},
-    { "source": "plugins/jasmine-webos/app/lib/jasmine-webos.js"}`
-    
 ## How It Works
 
 Jasmine webOS defines a convention for plugins into webOS applications, allowing collections of JavaScript code to be
 included into Palm Mojo applications apart from an application's code & other resources. This is distinct & unrelated
 from Palm's PDK (Plugin Development Kit).
 
-When your application has Jasmine webOS installed, you run your specifications by launching it with a parameter of
-`{"runTests": true}`. Jasmine webOS will take over your application, execute your Jasmine specs, and report the results in
-webOS UI on the emulator or on a device.
+When your application has Jasmine webOS installed, you run your specifications by launching it with a parameter telling Jasmine webOS to execute your Jasmine specs, and report the results in webOS UI on the emulator or on a device.
 
-## Writing Specs
+___IMAGE HERE OF RED/GREEN BAR___
 
-Now that you can run specs, you need to write some. Here's how.
+## How To Use It
 
-### Setup
+  * Download Jasmine and Jasmine webOS
+  * Add the Jasmine code to your application
+  * Write specs
+  * Launch your app to tell it to run tests
 
-  1. Make a `spec` directory in the root of your application
-  1. Build a directory tree under `spec` that mirrors your application code. For example, `spec/app/assistants`, `spec/app/models`, etc.
-  1. For each file in `app` you should have a corresponding file in `spec/app`. So if you have a file that handles foo in `app/models/foo.js`, your spec file should be `spec/models/foo-spec.js`
-  1. When you create a spec file, make sure to include that file in `sources.json` _after_ the Jasmine files. To extend the example from above:
-  
-  `{ "source": "plugins/jasmine-webos/app/lib/jasmine.js"},
-  { "source": "plugins/jasmine-webos/app/lib/jasmine-webos.js"},
-  { "source": "spec/models/foo-spec.js"}`
-
-### Mojo-independent Code
-
-For any code that does not make any Palm Mojo API calls, writing your specs is straightforward. Write your specs according to the [Jasmine User's Guide]().
-
-### Mojo Dependent Code
-
-Any code that is dependent on Mojo has some limitations. You can test Scene Assistants, but with a few key limitations. Jasmine webOS includes a Fake Mojo Depot for testing interactions with storage and a Mock Ajax implementation for testing making calls to remote servers.
-
-You can find examples of each in the [Sample Application]() (coming soon).
-
-### Add Spec Files to `sources.json`
-
-All of your spec files need to be added to `sources.json` _after_ the Jasmine files (see the example above). If these entries are not in `sources.json` then Jasmine will not know about your specs and thus won't be able to run them.
-
-## Running Specs
-
-  1. Ensure that a Palm Emulator is running (you can run your tests on a phone, but they will run more slowly)
-  1. Package & install your application as normal; ensure that it is not running
-  1. From your command line, you need to launch the application with the correct parameter so the tests run:
-  
-  `palm-launch -p '{"runTests": true}'`
-  
-Your app will come up and you should see Jasmine output like this:
-
-IMAGE HERE
-
-A progress bar, Jasmine version information, and the expectation results. If all your specs pass, the bar will be green. If any spec fails, the bar will be red and the failed specs will be listed. You can click on any failing spec to see the results of each expectation. At any time you can tap the 'All Results' button to see the results of all specs, passing and failing.
-
-## Excluding Specs from Production
-
-The Jasmine webOS plugin, Jasmine, and your spec files should not be included in your application when submitted to Palm for distribution. While this code will not affect your application, it does increase the time it takes to load.
-
-Remove these files from `sources.json` and exclude your `spec` directory when packaging. See Palm's SDK documentation for how to do this.
-
-## About & Thanks
-
-Big thanks to Pivotal Labs, Palm, and all the Mobile Pivots who have contributed: Rajan, Xian, Adam, Carl, JB, (another) Adam, Nathan, Joseph, Erik, Carl, Kelly, Joe, Jonathan, Ryan, Bosh, and anyone I've missed.
+More detailed instructions are in the [User's Guide](guide.html)
 
 ## Contact
 
-  * Discussion List: 
-  * Development Discussion List:
-  * Tracker Project:
-  * Twitter: 
+  * Discussion List: jasmine-webos@googlegroups.com
+  * Development Discussion List: jasmine-webos-dev@googlegroups.com
+  * Tracker Project: http://pivotaltracker.com/projects
+  * Twitter: @jasmine_webos
 
 ## Contributing
 
 We're happy to accept pull requests that come with specs. Please look at the repo and keep your code in the same style. Please let us know what you're up to on the development mailing list.
 
+## About & Thanks
+
+Big thanks to Pivotal Labs, Palm, and all the Mobile Pivots who have contributed: Rajan, Xian, Adam, Carl, JB, (another) Adam, Nathan, Joseph, Erik, Tyler, Chris, Carl, Kelly, Joe, Jonathan, Justin, Ryan, Bosh, and anyone I've missed.
