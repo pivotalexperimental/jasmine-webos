@@ -1,12 +1,3 @@
-if (!jasmine) {
-  var jasmine = {
-    webos: {}
-  }
-} else {
-  if (!jasmine.webos) {
-    jasmine.webos = {};
-  }
-}
 
 jasmine.webos.FakeDepot = function(seedObject) {
   var values = {};
