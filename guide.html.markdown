@@ -10,7 +10,7 @@ Here are more detailed instructions on how to get Jasmine webOS into your Palm&r
 
 ## Download and Install
 
-  1. Download the Jasmine webOS zipfile
+  1. Download the Jasmine webOS zipfile (from [here](index.html))
   1. Unzip it into the root of your application. You should now have a `plugins/jasmine-webos` directory
   1. Download [Jasmine](http://pivotal.github.com/jasmine)
   1. Extract `jasmine.js` into `plugins/jasmine-webos/app/lib`
@@ -58,12 +58,24 @@ All of your spec files need to be added to `sources.json` _after_ the Jasmine fi
 
 Your app will come up and you should see Jasmine output like this:
 
-IMAGE HERE
+<img src="img/green_short.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
 
-A progress bar, Jasmine version information, and the expectation results. If all your specs pass, the bar will be green. If any spec fails, the bar will be red and the failed specs will be listed. You can click on any failing spec to see the results of each expectation. At any time you can tap the 'All Results' button to see the results of all specs, passing and failing.
+A progress bar, Jasmine version information, and the expectation results. If all your specs pass, the bar will be green. 
+
+If any spec fails, the bar will be red and the failed specs will be listed, like this:
+
+<img src="img/red.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
+
+You can tap on any failed spec to see a list of all it's failing expectations, numbered, like this:
+
+<img src="img/red_spec.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
+
+At any time you can tap the 'All Results' button to see the results of all specs, passing and failing.
+
+<img src="img/green_long.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
 
 ## Excluding Specs from Production
 
-The Jasmine webOS plugin, Jasmine, and your spec files should not be included in your application when submitted to Palm for distribution. While this code will not affect your application, it does increase the time it takes to load.
+The Jasmine webOS plugin, Jasmine, and your spec files should not be included in your application when submitted to Palm for distribution. While this code will not affect your application, it does increase the package size and the time it takes the app to load.
 
 Remove these files from `sources.json` and exclude your `spec` directory when packaging. See Palm's SDK documentation for how to do this.

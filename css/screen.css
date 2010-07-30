@@ -26,6 +26,7 @@ body
 }
 a
 {
+	color: #55862e;
   text-decoration:none;
   border-bottom: solid 1px #3030a2;
 }
@@ -36,7 +37,7 @@ a:hover
 }
 
 a:visited{
-  color: #000;
+  color: #777;
   border-bottom: solid 1px #ccc;
 }
 
@@ -113,8 +114,9 @@ footer img {
 	vertical-align: middle;
 	height: 59px;
 }
-footer a {
-	text-decoration: none;
+footer a,
+footer a:visited {
+  border-bottom: none;
 }
 
 ul.posts
