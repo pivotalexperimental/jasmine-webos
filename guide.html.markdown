@@ -1,10 +1,10 @@
 ---
-layout: main.html
-title: Jasmine webOS
+layout: default
+title: Jasmine webOS Users' Guide
 
 ---
 
-# Jasmine webOS Users' Guide
+# Users' Guide
 
 Here are more detailed instructions on how to get Jasmine webOS into your Palm&reg; webOS&trade; application.
 
@@ -14,11 +14,10 @@ Here are more detailed instructions on how to get Jasmine webOS into your Palm&r
   1. Unzip it into the root of your application. You should now have a `plugins/jasmine-webos` directory
   1. Download [Jasmine](http://pivotal.github.com/jasmine)
   1. Extract `jasmine.js` into `plugins/jasmine-webos/app/lib`
-  1. Add these two entries into your application's `sources.json` file, preferably after all your application code. Order is important: `jasmine.js` _must_ be before `jasmine-webos.js`
+  1. Add these two entries into your application's `sources.json` file, preferably after all of your application code. Order is important: `jasmine.js` _must_ be before `jasmine-webos.js`
 
     { "source": "plugins/jasmine-webos/app/lib/jasmine.js"},
     { "source": "plugins/jasmine-webos/app/lib/jasmine-webos.js"}
-
 
 ## Writing Specs
 

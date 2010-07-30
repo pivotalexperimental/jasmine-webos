@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% if page.title %} {{ page.title }} | {% endif %} {{site.title}}</title>
+  <!--[if IE]>
+  <script type="text/javascript" src="js/html5.js"/>
+  <![endif]-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="stylesheet" type="text/css" media="screen, projection" href="css/screen.css"/>
+  <link rel="stylesheet" type="text/css" media="screen, projection" href="css/pygments.css"/>
+</head>
+<body>
+<div id="wrap" class="container_12">
+  <header class="grid_12 alpha omega">
+    {% if site.title %}
+    <h1><a href="{{site.url}}">{{site.title}}</a></h1>
+    {% endif %}
+  </header>
+  <div class="clear"></div>
+  <section class="grid_8 alpha omega">
+    {{ content }}
+  </section>
+  <div class="clear"></div>
+  <footer>
+    <div class="grid_12 alpha omega">
+      <span class="small">Powered by &nbsp;
+        <a href="http://pivotal.github.com/jasmine">
+          <img src="img/jasmine_logo.png" alt="Jasmine BDD for JavaScript"/>
+        </a>
+        &nbsp; &amp; &nbsp;
+        <a href="http://pivotallabs.com/">
+          <img src="img/pivotal_logo.gif" alt="Pivotal Labs" />
+        </a>
+      </span>
+    </div>
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      var pageTracker = _gat._getTracker("{{site.analytics_id}}");
+      pageTracker._trackPageview();
+    </script>
+  </footer>
+  <div class="clear"></div>
+</div>
+<!-- .container_12 -->
+</body>
+</html>

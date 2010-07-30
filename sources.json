@@ -1,0 +1,42 @@
+[
+  {
+    "source": "app/assistants/stage-assistant.js"
+  },
+  {
+    "scenes": "first",
+    "source": "app/assistants/first-assistant.js"
+  },
+  {
+    "source": "spec/lib/jasmine.js"
+  },
+  {
+    "source": "plugins/jasmine-webos/app/lib/jasmine-webos.js"
+  },
+  {
+    "source": "plugins/jasmine-webos/spec/app/doubles/fake-depot-spec.js"
+  },
+  {
+    "source": "plugins/jasmine-webos/spec/app/doubles/mock-ajax-spec.js"
+  },
+  {
+    "source": "plugins/jasmine-webos/spec/app/doubles/stub-scene-controller-spec.js"
+  },
+  {
+    "source": "plugins/jasmine-webos/spec/app/doubles/stub-stage-controller-spec.js"
+  },
+  {
+    "source": "plugins/jasmine-webos/spec/app/models/failing-examples-spec.js"
+  },
+  {
+    "source": "plugins/jasmine-webos/spec/app/models/jasmine-reporter-spec.js"
+  },
+  {
+    "source": "plugins/jasmine-webos/spec/app/models/spec-result-spec.js"
+  },
+  {
+    "source": "plugins/jasmine-webos/spec/app/models/version-spec.js"
+  },
+  {
+    "source": "plugins/jasmine-webos/spec/helpers/fake-view.js"
+  }
+]

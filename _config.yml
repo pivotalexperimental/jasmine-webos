@@ -1,0 +1,14 @@
+# Jekyll Configuration
+
+url: http://localhost:4000 #XXX
+title: Jasmine webOS #XXX
+description: BDD for Palm&reg; webOS&trade; #XXX
+author: Davis W. Frank #XXX
+email: dwfrank+jasminewebos@pivotallabs.com #XXX
+analytics_id: #Google Analytics ID : UA-xxx-xxx  
+
+auto: false
+lsi: false
+pygments: true
+server_port: 4000
+markdown: rdiscount
