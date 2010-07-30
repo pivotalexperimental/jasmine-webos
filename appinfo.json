@@ -1,6 +1,6 @@
 {
 	"id": "com.pivotallabs.jasmine-webos-test",
-	"version": "0.9.0",
+	"version": "1.0.0",
 	"vendor": "Pivotal Labs, Inc.",
 	"type": "web",
 	"main": "index.html",
