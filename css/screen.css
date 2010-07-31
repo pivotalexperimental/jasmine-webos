@@ -87,7 +87,8 @@ pre,code
   text-decoration: none;
 }
 img.screenshot {
-  padding: 0 35px;
+  padding-left: 35px;
+  padding-right: 10px;
 }
 header, footer
 {
@@ -117,7 +118,7 @@ footer img {
 	height: 59px;
 }
 .twtr-widget a,
-.twtr-widget a:visited, 
+.twtr-widget a:visited,
 footer a,
 footer a:visited {
   border-bottom: none;
