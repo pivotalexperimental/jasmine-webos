@@ -6,6 +6,7 @@ src_dir: .
 
 src_files:
  - auxiliary/prototype.js # included b/c Mojo includes it by default & is useful
+ - plugins/jasmine-webos/src/jasmine-webos-core.js
  - plugins/jasmine-webos/src/**/*.js
 
 spec_dir: plugins/jasmine-webos/spec
