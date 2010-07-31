@@ -116,6 +116,8 @@ footer img {
 	vertical-align: middle;
 	height: 59px;
 }
+.twtr-widget a,
+.twtr-widget a:visited, 
 footer a,
 footer a:visited {
   border-bottom: none;
