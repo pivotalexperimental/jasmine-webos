@@ -36,13 +36,13 @@ Now that you can run specs, you need to write some. Here's how.
 
 ### Mojo-independent Code
 
-For any code that does not make any Palm Mojo API calls, writing your specs is straightforward. Write your specs according to the [Jasmine User's Guide](). The [sample app]() has more specific examples.
+For any code that does not make any Palm Mojo API calls, writing your specs is straightforward. Write your specs according to the [Jasmine User's Guide](). The Sample Application (coming soon) has examples.
 
 ### Mojo Dependent Code
 
 Any code that is dependent on Mojo has some limitations. You can test Scene Assistants, but with a few key limitations. Jasmine webOS includes a Fake Mojo Depot for testing interactions with storage and a Mock Ajax implementation for testing making calls to remote servers.
 
-You can find examples of each in the [Sample Application]() (coming soon).
+You can find examples of each in the Sample Application (coming soon).
 
 ### Add Spec Files to `sources.json`
 
@@ -53,29 +53,35 @@ All of your spec files need to be added to `sources.json` _after_ the Jasmine fi
   1. Ensure that a Palm Emulator is running (you can run your tests on a phone, but they will run more slowly)
   1. Package & install your application as normal; ensure that it is not running
   1. From your command line, you need to launch the application with the correct parameter so the tests run:
-  
+
     palm-launch -p '{"runTests": true}'
 
 Your app will come up and you should see Jasmine output like this:
 
-<img src="img/green_short.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
+<img class="screenshot" src="img/green_short.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
 
-A progress bar, Jasmine version information, and the expectation results. If all your specs pass, the bar will be green. 
+A progress bar, Jasmine version information, and the expectation results. If all your specs pass, the bar will be green.
 
 If any spec fails, the bar will be red and the failed specs will be listed, like this:
 
-<img src="img/red.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
+<img class="screenshot" src="img/red.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
 
 You can tap on any failed spec to see a list of all it's failing expectations, numbered, like this:
 
-<img src="img/red_spec.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
+<img class="screenshot" src="img/red_spec.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
 
 At any time you can tap the 'All Results' button to see the results of all specs, passing and failing.
 
-<img src="img/green_long.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
+<img class="screenshot" src="img/green_long.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
 
 ## Excluding Specs from Production
 
 The Jasmine webOS plugin, Jasmine, and your spec files should not be included in your application when submitted to Palm for distribution. While this code will not affect your application, it does increase the package size and the time it takes the app to load.
 
 Remove these files from `sources.json` and exclude your `spec` directory when packaging. See Palm's SDK documentation for how to do this.
+
+## Coming Soon
+
+  * Sample Project
+  * JSDoc files
+  * Helper command-line scripts

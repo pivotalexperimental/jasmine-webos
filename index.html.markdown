@@ -22,28 +22,21 @@ from Palm's PDK (Plugin Development Kit).
 
 When your application has Jasmine webOS installed, you run your specifications by launching it with a parameter telling Jasmine webOS to execute your Jasmine specs and report the results in webOS UI (emulator or phone).
 
-<img src="img/red.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
-<img src="img/green_long.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;">
+<img class="screenshot" src="img/red.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;" />
+<img class="screenshot" src="img/green_long.png" title="Green!" alt="Passing Specs in webOS UI" style="width:240px;" />
 
 ## How To Use It
 
   * Download Jasmine and Jasmine webOS
   * Add the Jasmine code to your application
-  
+
 Then...
-  
+
   * Write specs
   * Launch your app to run tests
   * Repeat
 
 More detailed instructions are in the [Users' Guide](guide.html)
-
-## Contact
-
-  * Discussion List: jasmine-webos@googlegroups.com
-  * Development Discussion List: jasmine-webos-dev@googlegroups.com
-  * Tracker Project: http://pivotaltracker.com/projects
-  * Twitter: @jasmine_webos
 
 ## Contributing
 

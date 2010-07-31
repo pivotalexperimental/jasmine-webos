@@ -1,11 +1,11 @@
 @import url("960gs/960.css");
 
 /* http://www.levien.com/type/myfonts/inconsolata.html */
-@font-face 
+@font-face
 {
   font-family: "inconsolata";
   src: url("/fonts/Inconsolata.otf");
-}                                    
+}
 
 @font-face
 {
@@ -27,13 +27,13 @@ body
 a
 {
 	color: #55862e;
-  text-decoration:none;
+  text-decoration: none;
   border-bottom: solid 1px #3030a2;
 }
 a:hover
-{  
-  text-decoration:none;
-  border-bottom: 0px;
+{
+  text-decoration: none;
+  border-bottom: 0;
 }
 
 a:visited{
@@ -63,7 +63,7 @@ h2
 {
   font-size:  137.5%;
 }
-h3 
+h3
 {
   font-size: 125.0%;
 }
@@ -83,10 +83,12 @@ pre,code
 
 .noul
 {
-  border-bottom: 0px;
-  text-decoration:none;
+  border-bottom: 0;
+  text-decoration: none;
 }
-
+img.screenshot {
+  padding: 0 35px;
+}
 header, footer
 {
   display: block;
@@ -101,7 +103,7 @@ header h1{
 header h1 a, header h1 a:visited
 {
   color:#55862e;
-  text-decoration:none;
+  text-decoration: none;
   border-bottom: none;
 }
 
@@ -121,6 +123,6 @@ footer a:visited {
 
 ul.posts
 {
-  list-style-type:none;
+  list-style-type: none;
 }
 
