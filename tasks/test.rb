@@ -5,7 +5,7 @@ task :test => [:concat_sources, :sources] do
   app_id = get_app_id
   location = 'tcp'
 
-  puts "Installing #{app_id} at #{location}".yellow.bold
+  puts "Installing #{app_id} at #{location}".yellow
   system("find .. -name '#{app_id}*.ipk'| xargs palm-install --device #{location} ")
 
   run_tests = '{"runTests": true}'
