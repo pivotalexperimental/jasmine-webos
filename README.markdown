@@ -1,4 +1,4 @@
-# Jasmine webOS v0.9.0
+# Jasmine webOS v1.0.0
 
 If you want to use Jasmine webOS in a [Palm webOS](http://developer.palm.com) project, please go to the [home page]() and download the code.
 
@@ -15,12 +15,12 @@ To run Jasmine webOS's specs, you need to have Ruby and the following rubygems i
 
 Additionally, you need to have installed the [Palm webOS SDK]().
 
-## Organization 
+## Organization
 
 Jasmine webOS defines a convention for plugins into webOS applications, allowing collections of JavaScript code to be included into Palm Mojo applications apart from an application's code & other resources.  This is distinct & unrelated from Palm's PDK (Plugin Development Kit).
 
 These plugins cannot be tested completely by themselves, so this repo is itself a webOS application that includes the Jasmine webOS plugin (in `<app_root>/plugins/jasmine-webos`).
-  
+
 ## How to Run Specs
 
 The subset of specs that test code that do not depend on Mojo (Palm's application framework) can be run in any browser when using the Jasmine gem.  All specs can be run in the Palm webOS emulator or on a device - the results will be presented in Mojo UI.
