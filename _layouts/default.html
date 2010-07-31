@@ -6,6 +6,7 @@
   <!--[if IE]>
   <script type="text/javascript" src="js/html5.js"/>
   <![endif]-->
+  <script src="http://widgets.twimg.com/j/2/widget.js"></script>  
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
   <link rel="stylesheet" type="text/css" media="screen, projection" href="css/screen.css"/>
   <link rel="stylesheet" type="text/css" media="screen, projection" href="css/pygments.css"/>
@@ -24,12 +25,42 @@
   <section class="grid_4 omega">
     <h2>More Info</h2>
     <ul>
-      <li>Discussion: jasmine-webos@googlegroups.com</li>
-      <li>Development Discussion: jasmine-webos-dev@googlegroups.com</li>
-      <li>Project Backlog: http://pivotaltracker.com/projects</li>
-      <li>Build Status: http://ci.pivotallabs.com</li>
-      <li>Twitter: @jasmine_webos</li>
+      <li>Discussion: <a href="http://groups.google.com/group/jasmine-webos">jasmine-webos@googlegroups.com</a></li>
+      <li>Development Discussion: <a href="http://groups.google.com/group/jasmine-webos-dev">jasmine-webos-dev@googlegroups.com</a>
+      </li>
+      <li><a href="http://pivotaltracker.com/projects/16931">Project Backlog at Pivotal Tracker</a></li>
+      <li>Build Status: coming soon</li>
     </ul>
+    <script>
+      new TWTR.Widget({
+        version: 2,
+        type: 'profile',
+        rpp: 10,
+        interval: 6000,
+        width: 250,
+        height: 300,
+        theme: {
+          shell: {
+            background: '#333333',
+            color: '#ffffff'
+          },
+          tweets: {
+            background: '#000000',
+            color: '#ffffff',
+            links: '#4aed05'
+          }
+        },
+        features: {
+          scrollbar: false,
+          loop: false,
+          live: true,
+          hashtags: true,
+          timestamp: true,
+          avatars: true,
+          behavior: 'all'
+        }
+      }).render().setUser('jasmine_webos').start();
+    </script>
   </section>
   <div class="clear"></div>
   <footer>
@@ -40,7 +71,7 @@
         </a>
         &nbsp; &amp; &nbsp;
         <a href="http://pivotallabs.com/">
-          <img src="img/pivotal_logo.gif" alt="Pivotal Labs, Inc." />
+          <img src="img/pivotal_logo.gif" alt="Pivotal Labs, Inc."/>
         </a>
       </span>
     </div>
