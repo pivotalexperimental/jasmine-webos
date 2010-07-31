@@ -12,7 +12,8 @@ This guide assumes you already have the Palm Mojo SDK installed and have (at lea
 
 ## Download
 
-___DOWNLOAD FILE HERE___
+{% capture download %} {% include download.html %} {% endcapture %}
+{{ download | textilize }}
 
 ## How It Works
 
