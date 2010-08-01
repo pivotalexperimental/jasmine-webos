@@ -36,7 +36,7 @@ Now that you can run specs, you need to write some. Here's how.
 
 ### Mojo-independent Code
 
-For any code that does not make any Palm Mojo API calls, writing your specs is straightforward. Write your specs according to the [Jasmine User's Guide](). The Sample Application (coming soon) has examples.
+For any code that does not make any Palm Mojo API calls, writing your specs is straightforward. Write your specs according to the [Jasmine User's Guide](http://pivotal.github.com/jasmine/user-guide.html). The Sample Application (coming soon) has examples.
 
 ### Mojo Dependent Code
 
