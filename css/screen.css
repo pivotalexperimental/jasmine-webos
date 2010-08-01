@@ -4,18 +4,18 @@
 @font-face
 {
   font-family: "inconsolata";
-  src: url("/fonts/Inconsolata.otf");
+  src: url("/fonts/inconsolata.otf");
 }
 
 @font-face
 {
   font-family: "droid sans";
-  src: url("/fonts/DroidSans.ttf");
+  src: url("/fonts/droidsans.ttf");
 }
 @font-face
 {
   font-family: "droid sans bold";
-  src: url("/fonts/DroidSans-Bold.ttf");
+  src: url("/fonts/droidsans-bold.ttf");
 }
 body
 {
