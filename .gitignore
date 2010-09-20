@@ -4,5 +4,5 @@ sources.json
 mojo
 plugins/jasmine-webos/app/lib/jasmine-webos.js
 plugins/*.zip
-_site
+_site/
 jasmine-webos
