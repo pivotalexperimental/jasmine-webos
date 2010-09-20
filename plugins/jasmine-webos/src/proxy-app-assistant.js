@@ -2,7 +2,7 @@
  * which will remove itself immediately and run tests if requested.
  * Note, if AppAssistant is not defined first, we define a basic one
  */
-if (Mojo && !window['AppAssistant']) {
+if (typeof Mojo != "undefined" && !window['AppAssistant']) {
   AppAssistant = function() {};
 }
 jasmine.webos.originalAppAssistant_ = window['AppAssistant'];

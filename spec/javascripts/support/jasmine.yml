@@ -6,7 +6,7 @@ src_dir: .
 
 src_files:
  - auxiliary/prototype.js # included b/c Mojo includes it by default & is useful
- - auxiliary/mock-mojo.js # included b/c Mojo needs to be defined to work w/ headless testing
+ - auxiliary/fake-mojo.js # included b/c Mojo needs to be defined to work w/ headless testing
  - plugins/jasmine-webos/src/jasmine-webos-core.js
  - plugins/jasmine-webos/src/**/*.js
 
