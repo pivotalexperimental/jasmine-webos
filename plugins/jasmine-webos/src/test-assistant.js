@@ -128,10 +128,3 @@ JasmineTestAssistant.prototype.runnerCompleted = function(runner) {
       ' on ' +
       Mojo.Format.formatDate(new Date(), {date: 'short'});
 };
-
-// TODO: Handle this better
-var pockets = {
-  inPalmHost: function() {
-    return false;
-  }
-};

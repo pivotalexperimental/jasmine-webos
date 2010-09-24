@@ -12,8 +12,6 @@ task :concat_sources do
 
   puts "\nBuilding Jasmine webOS file for desktop browsers".yellow.bold
 
-  browser_sources = Dir.glob("#{source_dir}/browser/**/*.js")
-
   concat("#{plugin_dir}/app/lib/jasmine-webos-browser.js", browser_sources)
 end
 
@@ -53,6 +51,13 @@ def build_sources
   sources
 end
 
+def browser_sources
+  sources = [File.join(source_dir, 'jasmine-webos-core.js')]
+  sources += Dir.glob("#{source_dir}/browser/**/*.js")
+  sources += Dir.glob("#{plugin_dir}/spec/helpers/*.js")
+  sources
+end
+
 def version_string
   "#{version_data['major']}.#{version_data['minor']}.#{version_data['build']}"
 end
@@ -74,7 +79,7 @@ def version_data
   @version ||= begin
     appinfo = JSON.parse(File.new("appinfo.json").read)
     v = appinfo['version'].split('.')
-    { 'major' => v[0], 'minor' => v[1], 'build' => v[2], 'revision' => Time.now.to_i }
+    {'major' => v[0], 'minor' => v[1], 'build' => v[2], 'revision' => Time.now.to_i}
   end
 end
 
