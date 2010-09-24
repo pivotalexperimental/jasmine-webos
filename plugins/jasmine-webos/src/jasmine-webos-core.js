@@ -47,8 +47,8 @@ jasmine.webos.inDevice = function() {
 
 jasmine.webos.runTests = function(stageController) {
   stageController.pushScene({
-    name: 'test',
-    sceneTemplate: '../../plugins/jasmine-webos/app/views/test/test-scene'
+    name: 'jasmine-test',
+    sceneTemplate: '../../plugins/jasmine-webos/app/views/jasmine-test/jasmine-test-scene'
   });
 };
 

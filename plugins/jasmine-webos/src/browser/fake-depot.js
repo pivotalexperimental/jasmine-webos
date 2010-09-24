@@ -66,7 +66,7 @@ jasmine.webos.FakeDepot = function(seedObject) {
   return self;
 
   function seedDepot() {
-    for (key in seedObject) {
+    for (var key in seedObject) {
       if (seedObject.hasOwnProperty(key)) {
         self.poke(key, seedObject[key]);
       }

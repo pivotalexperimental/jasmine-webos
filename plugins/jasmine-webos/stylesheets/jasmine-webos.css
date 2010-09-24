@@ -1,36 +1,36 @@
-.test-scene #pill .download-pill-background {
+.jasmine-test-scene #pill .download-pill-background {
   -webkit-border-image: url(../images/pill-passing.png)  0 25 0 25 repeat repeat;
 }
 
-.test-scene #pill.fail .download-pill-background {
+.jasmine-test-scene #pill.fail .download-pill-background {
   -webkit-border-image: url(../images/pill-failing.png)  0 25 0 25 repeat repeat;
 }
 
-.test-scene .palm-divider .label.fail {
+.jasmine-test-scene .palm-divider .label.fail {
   color: #8f0902;
 }
 
-.test-scene .palm-row {
+.jasmine-test-scene .palm-row {
   padding: 10px;
 }
 
-.test-scene .palm-row.first {
+.jasmine-test-scene .palm-row.first {
   padding-top: 0;
 }
 
-.test-scene .palm-row .spec-name {
+.jasmine-test-scene .palm-row .spec-name {
   font-size: 15px;
 }
 
-.test-scene .palm-row.true .spec-name {
+.jasmine-test-scene .palm-row.true .spec-name {
   color: #1a3812;
 }
 
-.test-scene .palm-row.false .spec-name {
+.jasmine-test-scene .palm-row.false .spec-name {
   color: #8f0902;
 }
 
-.test-scene .count {
+.jasmine-test-scene .count {
   padding: 5px 15px;
   font-size: 14px;
   color: #333;

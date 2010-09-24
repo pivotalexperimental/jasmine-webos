@@ -1,9 +1,9 @@
-function TestAssistant() {
+function JasmineTestAssistant() {
   this.reporter = new JasmineReporter(this, jasmine.getEnv());
 
   this.listAttributes = {
-    listTemplate: '../../plugins/jasmine-webos/app/views/test/spec-list',
-    itemTemplate: '../../plugins/jasmine-webos/app/views/test/spec',
+    listTemplate: '../../plugins/jasmine-webos/app/views/jasmine-test/spec-list',
+    itemTemplate: '../../plugins/jasmine-webos/app/views/jasmine-test/spec',
     renderLimit: 500,
     onItemRendered: function(widget, item, node) {
       if (!item.passed) {
@@ -13,7 +13,7 @@ function TestAssistant() {
   };
 }
 
-TestAssistant.prototype.setup = function() {
+JasmineTestAssistant.prototype.setup = function() {
   this.addJasmineCSS();
   this.setUpJasmineHeader();
   this.setUpFailedSpecsList();
@@ -22,7 +22,7 @@ TestAssistant.prototype.setup = function() {
   this.controller.setupWidget('pill', {cancellable: false}, this.reporter.getPillModel());
 };
 
-TestAssistant.prototype.addJasmineCSS = function() {
+JasmineTestAssistant.prototype.addJasmineCSS = function() {
   var cssTag = document.createElement('link');
   cssTag.rel = 'stylesheet';
   cssTag.type = 'text/css';
@@ -32,12 +32,12 @@ TestAssistant.prototype.addJasmineCSS = function() {
   head.appendChild(cssTag);
 };
 
-TestAssistant.prototype.setUpJasmineHeader = function() {
+JasmineTestAssistant.prototype.setUpJasmineHeader = function() {
   this.controller.sceneElement.querySelector('.jasmine-info').innerHTML = "Jasmine " + jasmine.getEnv().versionString();
   this.controller.sceneElement.querySelector('.jasmine-webos-info').innerHTML = jasmine.webos.versionString();
 };
 
-TestAssistant.prototype.setUpFailedSpecsList = function() {
+JasmineTestAssistant.prototype.setUpFailedSpecsList = function() {
 
   this.controller.setupWidget(
       'failed-specs',
@@ -49,7 +49,7 @@ TestAssistant.prototype.setUpFailedSpecsList = function() {
   Mojo.Event.listen(failedSpecList, Mojo.Event.listTap, this.listTapHandler.bind(this));
 };
 
-TestAssistant.prototype.setUpCommandMenu = function() {
+JasmineTestAssistant.prototype.setUpCommandMenu = function() {
   this.controller.setupWidget(Mojo.Menu.commandMenu, {}, {
     visible: true,
     items: [
@@ -59,7 +59,7 @@ TestAssistant.prototype.setUpCommandMenu = function() {
   });
 };
 
-TestAssistant.prototype.setUpAllSpecsList = function() {
+JasmineTestAssistant.prototype.setUpAllSpecsList = function() {
   this.controller.setupWidget(
       'all-specs',
       this.listAttributes,
@@ -68,11 +68,11 @@ TestAssistant.prototype.setUpAllSpecsList = function() {
   Mojo.Event.listen(allSpecList, Mojo.Event.listTap, this.listTapHandler.bind(this));
 };
 
-TestAssistant.prototype.activate = function() {
+JasmineTestAssistant.prototype.activate = function() {
   jasmine.getEnv().execute();
 };
 
-TestAssistant.prototype.listTapHandler = function(event) {
+JasmineTestAssistant.prototype.listTapHandler = function(event) {
   if (event.item.passed) {
     return;
   }
@@ -85,7 +85,7 @@ TestAssistant.prototype.listTapHandler = function(event) {
 };
 
 
-TestAssistant.prototype.handleCommand = function(event) {
+JasmineTestAssistant.prototype.handleCommand = function(event) {
   switch (event.command) {
 
     case 'all':
@@ -100,27 +100,27 @@ TestAssistant.prototype.handleCommand = function(event) {
 
 
 // View interface
-TestAssistant.prototype.writeToLog = function(message) {
+JasmineTestAssistant.prototype.writeToLog = function(message) {
   Mojo.Log.info("Jamine.log: " + message);
 };
 
-TestAssistant.prototype.runnerStarted = function(specCount) {
+JasmineTestAssistant.prototype.runnerStarted = function(specCount) {
 };
 
-TestAssistant.prototype.specCompleted = function(spec) {
+JasmineTestAssistant.prototype.specCompleted = function(spec) {
   this.controller.modelChanged(this.reporter.getPillModel(), this);
 };
 
-TestAssistant.prototype.specFailed = function(spec) {
+JasmineTestAssistant.prototype.specFailed = function(spec) {
   this.controller.sceneElement.querySelector('#pill').addClassName('fail');
   this.controller.modelChanged(this.reporter.getFailedSpecsListModel(), this);
 };
 
-TestAssistant.prototype.suiteCompleted = function(suite) {
+JasmineTestAssistant.prototype.suiteCompleted = function(suite) {
   this.controller.modelChanged(this.reporter.getPillModel(), this);
 };
 
-TestAssistant.prototype.runnerCompleted = function(runner) {
+JasmineTestAssistant.prototype.runnerCompleted = function(runner) {
   this.controller.modelChanged(this.reporter.getPillModel(), this);
   var timeElement = this.controller.sceneElement.querySelector('.time');
   timeElement.innerHTML = 'Finished at ' +

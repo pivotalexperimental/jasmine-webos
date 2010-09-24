@@ -1,15 +1,15 @@
 // Only include this suite if running on the emulator
-if (jasmine.webos.getPalmVersionString()) {
+if (jasmine.webos.inDevice() || jasmine.webos.inEmulator()) {
   describe("jasmine.webos.StubSceneController", function () {
     var sceneElement, controller;
 
     beforeEach(function() {
       var html = '<div>' +
-                 '<div id="sceneId">' +
-                 '<div id="first" class="elementClass"></div>' +
-                 '<div class="elementClass"></div>' +
-                 '</div>' +
-                 '</div>';
+        '<div id="sceneId">' +
+        '<div id="first" class="elementClass"></div>' +
+        '<div class="elementClass"></div>' +
+        '</div>' +
+        '</div>';
       sceneElement = Mojo.View.convertToNode(html, document);
       controller = new jasmine.webos.StubSceneController({}, sceneElement, {});
     });
@@ -93,8 +93,18 @@ if (jasmine.webos.getPalmVersionString()) {
         expect(controller.showDialog).toBe(Mojo.doNothing);
       });
 
+      it("popupSubmenu", function() {
+        expect(controller.popupSubmenu).toBe(Mojo.doNothing);
+      });
+
+      it("setInitialFocusedElement", function() {
+        expect(controller.setInitialFocusedElement).toBe(Mojo.doNothing);
+      });
+    });
+
+    describe("should not provide stubs for", function () {
       it("showBanner", function() {
-        expect(controller.showBanner).toBe(Mojo.doNothing);
+        expect(controller.showBanner).not.toBeDefined();
       });
     });
   });

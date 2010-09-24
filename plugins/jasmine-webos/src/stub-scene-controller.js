@@ -1,4 +1,4 @@
-if (jasmine.webos.getPalmVersionString()) {
+if (jasmine.webos.inDevice() || jasmine.webos.inEmulator()) {
   jasmine.webos.StubSceneController = function(stageController, sceneElement, sceneArguments, remainingArguments) {
     this.stageController = stageController;
     this.sceneElement = sceneElement;
@@ -22,48 +22,49 @@ if (jasmine.webos.getPalmVersionString()) {
   jasmine.webos.StubSceneController.prototype.serviceRequest = Mojo.doNothing;
   jasmine.webos.StubSceneController.prototype.modelChanged = Mojo.doNothing;
   jasmine.webos.StubSceneController.prototype.showDialog = Mojo.doNothing;
-  jasmine.webos.StubSceneController.prototype.showBanner = Mojo.doNothing;
-}
+  jasmine.webos.StubSceneController.prototype.popupSubmenu = Mojo.doNothing;
+  jasmine.webos.StubSceneController.prototype.setInitialFocusedElement = Mojo.doNothing;
 
-jasmine.webos.createStubSceneAssistant = function(sceneArguments) {
-  var remainingArguments = $A(arguments).slice(1);
-  var stageController = new jasmine.webos.StubStageController();
-  if (Object.isString(sceneArguments)) {
-    sceneArguments = {name: sceneArguments };
-  }
-  var sceneName = sceneArguments.name;
-  var sceneTemplateName = sceneArguments.sceneTemplate || sceneName + "/" + sceneName + "-scene";
-  var sceneId = sceneArguments.id || "mojo-scene-" + sceneArguments.name;
-  var content = Mojo.View.render({template: sceneTemplateName, object: stageController});
-  content = content.strip();
-  var nodeList = Mojo.View.convertToNodeList(content, document);
-  var contentDiv = Mojo.View.wrapMultipleNodes(nodeList, document, true);
-  contentDiv.id = sceneId;
+  jasmine.webos.createStubSceneAssistant = function(sceneArguments) {
+    var remainingArguments = $A(arguments).slice(1);
+    var stageController = new jasmine.webos.StubStageController();
+    if (Object.isString(sceneArguments)) {
+      sceneArguments = {name: sceneArguments };
+    }
+    var sceneName = sceneArguments.name;
+    var sceneTemplateName = sceneArguments.sceneTemplate || sceneName + "/" + sceneName + "-scene";
+    var sceneId = sceneArguments.id || "mojo-scene-" + sceneArguments.name;
+    var content = Mojo.View.render({template: sceneTemplateName, object: stageController});
+    content = content.strip();
+    var nodeList = Mojo.View.convertToNodeList(content, document);
+    var contentDiv = Mojo.View.wrapMultipleNodes(nodeList, document, true);
+    contentDiv.id = sceneId;
 
-  if (!sceneArguments.disableSceneScroller) {
-    var scrollerId = sceneId + "-scene-scroller";
-    var scrollerContent = "<div id='" + scrollerId + "' x-mojo-element='Scroller'></div>";
-    var scroller = Mojo.View.convertToNode(scrollerContent, document);
-    scroller.appendChild(contentDiv);
-  }
+    if (!sceneArguments.disableSceneScroller) {
+      var scrollerId = sceneId + "-scene-scroller";
+      var scrollerContent = "<div id='" + scrollerId + "' x-mojo-element='Scroller'></div>";
+      var scroller = Mojo.View.convertToNode(scrollerContent, document);
+      scroller.appendChild(contentDiv);
+    }
 
-  var sceneElement = $(contentDiv);
+    var sceneElement = $(contentDiv);
 
-  sceneElement.addClassName('palm-scene');
-  sceneElement.addClassName(sceneName + '-scene');
+    sceneElement.addClassName('palm-scene');
+    sceneElement.addClassName(sceneName + '-scene');
 
-  var assistantName = sceneArguments.assistantName || Mojo.identifierToCreatorFunctionName(sceneName, "Assistant");
+    var assistantName = sceneArguments.assistantName || Mojo.identifierToCreatorFunctionName(sceneName, "Assistant");
 
-  var constructorFunction = sceneArguments.assistantConstructor || window[assistantName];
+    var constructorFunction = sceneArguments.assistantConstructor || window[assistantName];
 
-  Mojo.require(sceneArguments.allowUndefinedAssistant || constructorFunction,
-    "The scene assistant '" + assistantName + "' is not defined. Did you remember to include it in index.html?");
+    Mojo.require(sceneArguments.allowUndefinedAssistant || constructorFunction,
+      "The scene assistant '" + assistantName + "' is not defined. Did you remember to include it in index.html?");
 
-  if (constructorFunction) {
-    var assistant = Mojo.createWithArgs(constructorFunction, remainingArguments);
-    assistant.controller = new jasmine.webos.StubSceneController(stageController, sceneElement, sceneArguments);
-    assistant.controller.assistant = this;
-  }
+    if (constructorFunction) {
+      var assistant = Mojo.createWithArgs(constructorFunction, remainingArguments);
+      assistant.controller = new jasmine.webos.StubSceneController(stageController, sceneElement, sceneArguments);
+      assistant.controller.assistant = this;
+    }
 
-  return assistant;
-};
+    return assistant;
+  };
+}  
