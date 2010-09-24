@@ -1,30 +1,20 @@
 desc "Put all of Jasmine for webOS into one file"
 task :concat_sources do
 
-  puts 'Building Jasmine webOS distribution file'.yellow
+  FileUtils.mkdir_p("#{plugin_dir}/app/lib")
 
-  sources = build_sources
-
-  FileUtils.mkdir_p('plugins/jasmine-webos/app/lib')
-
-  old_files = Dir.glob('plugins/jasmine-webos/app/lib/*.js')
+  old_files = Dir.glob("#{plugin_dir}/app/lib/*.js")
   old_files.each { |file| File.delete(file) }
 
-  File.open("plugins/jasmine-webos/app/lib/jasmine-webos.js", 'w') do |single_file|
-    sources.each do |source_filename|
-      puts "Adding #{source_filename} to jasmine-webos.js"
-      single_file.puts(File.read(source_filename))
-    end
+  puts "\nBuilding Jasmine webOS file for Device/Emulator".yellow.bold
 
-    single_file.puts %{
-jasmine.webos.version = {
-  "major": #{version_data['major']},
-  "minor": #{version_data['minor']},
-  "build": #{version_data['build']},
-  "revision": #{version_data['revision']}
-};
-}
-  end
+  concat("#{plugin_dir}/app/lib/jasmine-webos.js", build_sources)
+
+  puts "\nBuilding Jasmine webOS file for desktop browsers".yellow.bold
+
+  browser_sources = Dir.glob("#{source_dir}/browser/**/*.js")
+
+  concat("#{plugin_dir}/app/lib/jasmine-webos-browser.js", browser_sources)
 end
 
 desc "Make a zip file that contains the entire Jasmine webOS plugin"
@@ -57,15 +47,27 @@ task :build => :concat_sources do
 end
 
 def build_sources
-  jasmine_webos_source_dir = 'plugins/jasmine-webos/src'
-  sources = [File.join(jasmine_webos_source_dir, 'jasmine-webos-core.js'),
-             File.join(jasmine_webos_source_dir, 'proxy-app-assistant.js')]
-  sources += Dir.glob("#{jasmine_webos_source_dir}/*.js").reject { |f| sources.include?(f) }.sort
+  sources = [File.join(source_dir, 'jasmine-webos-core.js'),
+             File.join(source_dir, 'proxy-app-assistant.js')]
+  sources += Dir.glob("#{source_dir}/**/*.js").reject { |f| sources.include?(f) }.sort
   sources
 end
 
 def version_string
   "#{version_data['major']}.#{version_data['minor']}.#{version_data['build']}"
+end
+
+def version_object
+  %{
+
+jasmine.webos.version = {
+  "major": #{version_data['major']},
+  "minor": #{version_data['minor']},
+  "build": #{version_data['build']},
+  "revision": #{version_data['revision']}
+};
+
+}
 end
 
 def version_data
@@ -78,4 +80,27 @@ end
 
 def root
   File.expand_path(File.dirname(__FILE__))
+end
+
+def plugin_dir
+  'plugins/jasmine-webos'
+end
+
+def source_dir
+  "#{plugin_dir}/src"
+end
+
+def concat(filename, sources)
+
+  puts "Building #{filename}:".green
+
+  File.open(filename, 'w') do |single_file|
+    sources.each do |source_filename|
+      puts "Adding #{source_filename}"
+      single_file.puts(File.read(source_filename))
+    end
+
+    single_file.puts version_object
+  end
+
 end
