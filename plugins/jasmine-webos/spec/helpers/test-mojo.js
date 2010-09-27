@@ -6,8 +6,7 @@
   When testing in a desktop browser, where there is no Mojo defined, fake Mojo objects & properties are defined enough
    for useful testing. 
  */
-if (jasmine.webos.inDevice() || jasmine.webos.inEmulator()) {
-
+if (typeof Mojo != 'undefined') {
   spyOn(Mojo.Event, 'listen').andCallThrough();
   spyOn(Mojo.Event, 'stopListening').andCallThrough();
   spyOn(Mojo.Log, 'error').andCallThrough();
@@ -29,7 +28,7 @@ if (jasmine.webos.inDevice() || jasmine.webos.inEmulator()) {
 
   // fake out enough Mojo
   var Mojo = {
-    appInfo: eval('(' + loadFile('appInfo.json') + ')'),    
+    appInfo: eval('(' + loadFile('appinfo.json') + ')'),    
     doNothing: function() {
     },
     Event: {

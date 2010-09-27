@@ -1,4 +1,4 @@
-if (jasmine.webos.getPalmVersionString()) {
+if (jasmine.webos.inDevice() || jasmine.webos.inEmulator()) {
   describe("jasmine.webos.StubStageController", function () {
     var stageController;
     beforeEach(function() {

@@ -44,6 +44,7 @@ task :build => :concat_sources do
   exec "ls -alF plugins/*.zip"
 end
 
+# Defines load/concatenation order of Jasmine webOS files for device/emulator
 def build_sources
   sources = [File.join(source_dir, 'jasmine-webos-core.js'),
              File.join(source_dir, 'proxy-app-assistant.js')]
@@ -51,11 +52,13 @@ def build_sources
   sources
 end
 
+# Defines load/concatenation order of Jasmine webOS files for browser 
 def browser_sources
-  sources = [File.join(source_dir, 'jasmine-webos-core.js')]
+  sources = [File.join(source_dir, 'jasmine-webos-core.js'),
+             File.join(plugin_dir, 'spec', 'helpers', 'test-mojo.js')]
   sources += Dir.glob("#{source_dir}/browser/**/*.js")
   sources += Dir.glob("#{plugin_dir}/spec/helpers/*.js")
-  sources
+  sources.uniq
 end
 
 def version_string
