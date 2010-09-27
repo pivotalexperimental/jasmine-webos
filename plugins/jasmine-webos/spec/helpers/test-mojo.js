@@ -29,6 +29,7 @@ if (jasmine.webos.inDevice() || jasmine.webos.inEmulator()) {
 
   // fake out enough Mojo
   var Mojo = {
+    appInfo: eval('(' + loadFile('appInfo.json') + ')'),    
     doNothing: function() {
     },
     Event: {
