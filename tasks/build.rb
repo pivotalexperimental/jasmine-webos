@@ -48,14 +48,16 @@ end
 def build_sources
   sources = [File.join(source_dir, 'jasmine-webos-core.js'),
              File.join(source_dir, 'proxy-app-assistant.js')]
+
   sources += Dir.glob("#{source_dir}/**/*.js").reject { |f| sources.include?(f) }.sort
+  sources += Dir.glob("#{plugin_dir}/spec/helpers/*.js")
   sources
 end
 
 # Defines load/concatenation order of Jasmine webOS files for browser 
 def browser_sources
   sources = [File.join(source_dir, 'jasmine-webos-core.js'),
-             File.join(plugin_dir, 'spec', 'helpers', 'test-mojo.js')]
+             File.join(plugin_dir, 'spec/helpers/test-mojo.js')]
   sources += Dir.glob("#{source_dir}/browser/**/*.js")
   sources += Dir.glob("#{plugin_dir}/spec/helpers/*.js")
   sources.uniq

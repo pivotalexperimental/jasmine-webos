@@ -7,7 +7,6 @@ if (typeof Mojo != "undefined" && !window['AppAssistant']) {
 }
 jasmine.webos.originalAppAssistant_ = window['AppAssistant'];
 jasmine.webos.originalStageAssistant = window['StageAssistant'];
-jasmine.webos.isTestingPockets_ = window['AppAssistant'] && AppAssistant.isPockets;
 
 AppAssistant = function(appController) {
   console.error("=============> Jasmine webOS: Constructing Proxy App Assistant");
@@ -20,7 +19,6 @@ AppAssistant = function(appController) {
 
   if (runTests) {
     Mojo.Log.info("====> Jasmine webOS: prepping to run specs");
-    spyOn(Mojo, "Depot").andReturn(new jasmine.webos.FakeDepot());
 
     window['StageAssistant'] = function() {
       window['StageAssistant'] = jasmine.webos.originalStageAssistant;

@@ -1,19 +1,13 @@
 /*
-  This code stubs/fakes out Mojo under test.
+ This code stubs/fakes out Mojo under test.
 
-  When testing in the emulator, Jasmine spies are introduced on some ekey functions.
+ When testing in the emulator, Jasmine spies are introduced on some ekey functions.
 
-  When testing in a desktop browser, where there is no Mojo defined, fake Mojo objects & properties are defined enough
-   for useful testing. 
+ When testing in a desktop browser, where there is no Mojo defined, fake Mojo objects & properties are defined enough
+ for useful testing.
  */
-if (typeof Mojo != 'undefined') {
-  spyOn(Mojo.Event, 'listen').andCallThrough();
-  spyOn(Mojo.Event, 'stopListening').andCallThrough();
-  spyOn(Mojo.Log, 'error').andCallThrough();
-
-} else { // testing in a browser
-
-  $L = function(toLoc) {
+jasmine.webos.initTestMojo = function() {
+  window.$L = function(toLoc) {
     if (typeof toLoc == "string") {
       return toLoc;
     } else if (typeof toLoc == "object") {
@@ -27,8 +21,8 @@ if (typeof Mojo != 'undefined') {
   };
 
   // fake out enough Mojo
-  var Mojo = {
-    appInfo: eval('(' + loadFile('appinfo.json') + ')'),    
+  window.Mojo = {
+    appInfo: eval('(' + loadFile('appinfo.json') + ')'),
     doNothing: function() {
     },
     Event: {
@@ -63,4 +57,4 @@ if (typeof Mojo != 'undefined') {
       })
     }
   }
-}
+};

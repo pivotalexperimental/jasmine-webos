@@ -3,7 +3,7 @@ describe("JasmineReporter", function () {
   var spec1, spec2, spec3, spec4;
 
   beforeEach(function() {
-    view = new FakeView([
+    view = new FakeSceneAssistant([
       'writeToLog',
       'specFailed',
       'runnerStarted',

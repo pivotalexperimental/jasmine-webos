@@ -27,7 +27,7 @@ task :sources do
   @sources_json << { 'source' => 'spec/lib/jasmine.js' }
   @sources_json << { 'source' => 'plugins/jasmine-webos/app/lib/jasmine-webos.js' }
 
-  paths = Dir.chdir('.') { |dir| Dir.glob("plugins/jasmine-webos/spec/**/*.js") };
+  paths = Dir.chdir('.') { |dir| Dir.glob("plugins/jasmine-webos/spec/app/**/*.js") }
 
   paths.each do |path|
     @sources_json << { 'source' => path }
