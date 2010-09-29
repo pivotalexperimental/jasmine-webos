@@ -7,6 +7,7 @@ if (jasmine.webos.inDevice() || jasmine.webos.inEmulator()) {
       this.sceneScroller = this.sceneElement.parentNode;
     }
     this.window = {};
+    this.document = document;
   };
 
   jasmine.webos.StubSceneController.prototype.get = function(id) {
